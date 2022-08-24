@@ -1,10 +1,11 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import express from 'express';
 import nunjucks from 'nunjucks';
 import { MongoClient } from 'mongodb';
 import { route as HomeController } from './route/home';
 
 (async function (port: number) {
+	dotenv.config();
 	if (!process.env.MONGO_URL) {
 		return console.error("unknown mongo url");
 	}
@@ -12,7 +13,7 @@ import { route as HomeController } from './route/home';
 	const mongo = new MongoClient(process.env.MONGO_URL);
 	try {
 		await mongo.connect();
-		console.log("Connected correctly to server");
+		console.log("Connected correctly to MongoDB server");
 	} catch (e) {
 		if(typeof e === "string") {
 			return console.error(e);
