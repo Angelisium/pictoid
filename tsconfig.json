@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"target": "es6",
+		"module": "CommonJS",
+		"moduleResolution": "node",
+		"lib": [
+			"es6",
+			"dom",
+			"dom.iterable"
+		],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"esModuleInterop": true,
+		"isolatedModules": true,
+		"incremental": true,
+		"outDir": "dist"
+	},
+	"include": [
+		"**/*.ts",
+		"**/*.js"
+	],
+	"exclude": [
+		"node_modules"
+	]
+}
