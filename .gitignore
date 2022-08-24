@@ -9,6 +9,7 @@ node_modules/
 
 # Build artifacts
 build/
+db/
 *.tsbuildinfo
 .parcel-cache
 
