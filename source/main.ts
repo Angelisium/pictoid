@@ -4,13 +4,17 @@ import https from 'https';
 import dotenv from 'dotenv';
 import express from 'express';
 import nunjucks from 'nunjucks';
-import { MongoClient } from 'mongodb';
+import { MongoClient, Db } from 'mongodb';
 import { route as HomeController } from './route/home';
+
+declare global {
+	var mongo: Db
+}
 
 (async function (port: number) {
 	dotenv.config();
-	if (!process.env.MONGO_URL) {
-		return console.error("unknown mongo url");
+	if (!process.env.MONGO_URL || !process.env.MONGO_DBN) {
+		return console.error("Unknown mongo information");
 	}
 	const exprs = express();
 	const mongo = new MongoClient(process.env.MONGO_URL);
@@ -24,6 +28,7 @@ import { route as HomeController } from './route/home';
 			return console.error(e.message);
 		}
 	}
+	global.mongo = mongo.db(process.env.MONGO_DBN);
 
 	nunjucks.configure('source/view', {
 		autoescape: true,
