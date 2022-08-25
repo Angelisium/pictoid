@@ -35,7 +35,8 @@ async function run(port: number) {
 		autoescape: true,
 		trimBlocks: true,
 		lstripBlocks: true,
-		express: exprs
+		express: exprs,
+		watch: process.env.NODE_ENV === "development"
 	});
 
 	exprs.use(express.static('public'));

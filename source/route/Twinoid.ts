@@ -2,8 +2,8 @@ import { Request, Response, Router } from 'express';
 
 const router = Router();
 
-router.get("/login", (req: Request, res: Response) => {
-
+router.get("/oauth/login", (req: Request, res: Response) => {
+    return res.send("tset")
 })
 
 export default router;
