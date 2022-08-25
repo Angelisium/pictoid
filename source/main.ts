@@ -6,12 +6,13 @@ import express from 'express';
 import nunjucks from 'nunjucks';
 import { MongoClient, Db } from 'mongodb';
 import { route as HomeController } from './route/Home';
+import TwinoidRouter from './route/Twinoid';
 
 declare global {
 	var mongo: Db
 }
 
-(async function (port: number) {
+async function run(port: number) {
 	dotenv.config();
 	if (!process.env.MONGO_URL || !process.env.MONGO_DBN) {
 		return console.error("Unknown mongo information");
@@ -41,12 +42,20 @@ declare global {
 	exprs.get('/', HomeController);
 	exprs.get('/:locale', HomeController);
 
-	const ser1 = http.createServer(exprs);
-	const ser2 = https.createServer({
-		key: fs.readFileSync(process.env.SSL_KEY || 'temp/server.key', 'utf8'),
-		cert: fs.readFileSync(process.env.SSL_CRT || 'temp/server.crt', 'utf8'),
-	}, exprs);
+	exprs.get('/oauth', TwinoidRouter);
 
+	const ser1 = http.createServer(exprs);
 	ser1.listen(parseInt(process.env.HTTP_PORT || '8080'));
-	ser2.listen(parseInt(process.env.HTTPS_PORT || '8443'));
-})(parseInt(process.argv?.[2] || '3000'));
+	console.log(`HTTP server listening on port ${process.env.HTTP_PORT || '8080'}`);
+
+	if (process.env.ENABLE_HTTPS === "true") {
+		const ser2 = https.createServer({
+			key: fs.readFileSync(process.env.SSL_KEY || 'temp/server.key', 'utf8'),
+			cert: fs.readFileSync(process.env.SSL_CRT || 'temp/server.crt', 'utf8'),
+		}, exprs);
+		ser2.listen(parseInt(process.env.HTTPS_PORT || '8443'));
+		console.log(`HTTPS server listening on port ${process.env.HTTPS_PORT || '8443'}`);
+	}
+}
+
+run(parseInt(process.argv?.[2] || '3000'));
