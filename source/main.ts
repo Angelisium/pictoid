@@ -37,9 +37,9 @@ declare global {
 		express: exprs
 	});
 
+	exprs.use(express.static('public'));
 	exprs.get('/', HomeController);
 	exprs.get('/:locale', HomeController);
-	exprs.use(express.static('public'));
 
 	const ser1 = http.createServer(exprs);
 	const ser2 = https.createServer({
