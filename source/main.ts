@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import nunjucks from 'nunjucks';
 import { MongoClient, Db } from 'mongodb';
-import { route as HomeController } from './route/home';
+import { route as HomeController } from './route/Home';
 
 declare global {
 	var mongo: Db
