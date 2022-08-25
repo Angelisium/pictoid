@@ -4,8 +4,7 @@
 	"description": "A new version of pictoid ❤",
 	"main": "main.ts",
 	"scripts": {
-		"start": "ts-node source/main.ts",
-		"db": "mongod --port 27017 --dbpath ./db/"
+		"start": "ts-node source/main.ts"
 	},
 	"author": {
 		"name": "Angelisium",
@@ -28,5 +27,5 @@
 		"ts-node": "^10.9.1",
 		"typescript": "^4.7.4"
 	},
-	"packageManager": "yarn@3.2.2"
+	"packageManager": "yarn@3.2.3"
 }
