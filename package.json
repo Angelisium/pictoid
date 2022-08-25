@@ -4,7 +4,8 @@
 	"description": "A new version of pictoid ❤",
 	"main": "main.ts",
 	"scripts": {
-		"start": "ts-node source/main.ts"
+		"start": "ts-node source/main.ts",
+		"build": "tsc"
 	},
 	"author": {
 		"name": "Angelisium",
