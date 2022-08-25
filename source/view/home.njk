@@ -1,7 +1,11 @@
 {% extends 'index.njk' %}
 
-{% block title %} - Hello World{% endblock title %}
+{# soon i18n #}
+{% block title %} - All games{% endblock title %}
 
 {% block content %}
-	<p>Hello World</p>
+    <h1>Game</h1> {# soon i18n #}
+    {% for game in games %}
+        <a href="/game/{{ game.id }}">{{ game.name }}</a>
+    {% endfor %}
 {% endblock content %}
