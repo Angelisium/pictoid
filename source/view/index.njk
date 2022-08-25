@@ -5,8 +5,20 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Pictoid{% block title %}{% endblock title %}</title>
+		<link rel="stylesheet" href="/source/css/normalize.css">
+		<link rel="stylesheet" href="/source/css/style.css">
 	</head>
 	<body>
-		{% block content %}No Content{% endblock content %}
+		<nav>
+		{% if user %}
+			<img src="{{ user.avatar }}" alt="User Image">
+			<span>{{ user.username }}</span>
+		{% else %}
+			<a href="/?user=true">Login</a> {# soon i18n, temp /?user=true real : /oauth/twinoid #}
+		{% endif %}
+		</nav>
+		<main>
+			{% block content %}No Content{% endblock content %}
+		</main>
 	</body>
 </html>
