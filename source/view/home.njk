@@ -1,7 +1,6 @@
 {% extends 'index.njk' %}
 
-{# soon i18n #}
-{% block title %} - All games{% endblock title %}
+{% block title %} - All games{% endblock title %} {# soon i18n #}
 
 {% set _links = [
     ['all', '/',   'All Games'],
@@ -25,6 +24,6 @@
     {% for game in games %}
             <a href="/game/{{ game.id }}">{{ game.name }}</a>
     {% else %}
-            <p>No games found.</p>
+            <p>No games found.</p> {# soon i18n #}
     {% endfor %}
 {% endblock content %}
