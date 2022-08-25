@@ -3,18 +3,28 @@
 {# soon i18n #}
 {% block title %} - All games{% endblock title %}
 
+{% set _links = [
+    ['all', '/',   'All Games'],
+    ['de',  '/de', 'Deutsch'  ],
+    ['en',  '/en', 'English'  ],
+    ['es',  '/es', 'Español'  ],
+    ['fr',  '/fr', 'Français' ]
+] %}
+
 {% block content %}
             <h1>Game</h1> {# soon i18n #}
             <nav class="secondary">
-                <a href="/" class="selected">All Games</a>
-                <a href="/de">Deutsch</a>
-                <a href="/en">English</a>
-                <a href="/es">Español</a>
-                <a href="/fr">Français</a>
-            </nav>
-        {% for game in games %}
-            <a href="/game/{{ game.id }}">{{ game.name }}</a>
+    {% for link in _links %}
+        {% if (link[0] === locale) %}
+                <a href="{{ link[1] }}" class="selected">{{ link[2] }}</a>
         {% else %}
+                <a href="{{ link[1] }}">{{ link[2] }}</a>
+        {% endif %}
+    {% endfor %}
+            </nav>
+    {% for game in games %}
+            <a href="/game/{{ game.id }}">{{ game.name }}</a>
+    {% else %}
             <p>No games found.</p>
-        {% endfor %}
+    {% endfor %}
 {% endblock content %}
