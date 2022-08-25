@@ -32,10 +32,13 @@ declare global {
 
 	nunjucks.configure('source/view', {
 		autoescape: true,
+		trimBlocks: true,
+		lstripBlocks: true,
 		express: exprs
 	});
 
 	exprs.get('/', HomeController);
+	exprs.get('/:locale', HomeController);
 	exprs.use(express.static('public'));
 
 	const ser1 = http.createServer(exprs);
