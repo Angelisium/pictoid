@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 
-export function route(req: Request, res: Response) {
-	res.render('home.njk', {locale: "en"});
+export async function route(req: Request, res: Response) {
+	let locale = "en",
+		games = await mongo.collection("game").find({ locale }).toArray();
+	res.render('home.njk', { locale, games });
 }
