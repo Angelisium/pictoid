@@ -1,3 +1,6 @@
+import fs from 'fs';
+import http from 'http';
+import https from 'https';
 import dotenv from 'dotenv';
 import express from 'express';
 import nunjucks from 'nunjucks';
@@ -15,9 +18,9 @@ import { route as HomeController } from './route/home';
 		await mongo.connect();
 		console.log("Connected correctly to MongoDB server");
 	} catch (e) {
-		if(typeof e === "string") {
+		if (typeof e === "string") {
 			return console.error(e);
-		} else if(e instanceof Error) {
+		} else if (e instanceof Error) {
 			return console.error(e.message);
 		}
 	}
@@ -30,7 +33,12 @@ import { route as HomeController } from './route/home';
 	exprs.get('/', HomeController);
 	exprs.use(express.static('public'));
 
-	exprs.listen(port, () => {
-		console.log('listen 127.0.0.1:' + port);
-	});
+	const ser1 = http.createServer(exprs);
+	const ser2 = https.createServer({
+		key: fs.readFileSync(process.env.SSL_KEY || 'temp/server.key', 'utf8'),
+		cert: fs.readFileSync(process.env.SSL_CRT || 'temp/server.crt', 'utf8'),
+	}, exprs);
+
+	ser1.listen(parseInt(process.env.HTTP_PORT || '8080'));
+	ser2.listen(parseInt(process.env.HTTPS_PORT || '8443'));
 })(parseInt(process.argv?.[2] || '3000'));
