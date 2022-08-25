@@ -4,8 +4,17 @@
 {% block title %} - All games{% endblock title %}
 
 {% block content %}
-    <h1>Game</h1> {# soon i18n #}
-    {% for game in games %}
-        <a href="/game/{{ game.id }}">{{ game.name }}</a>
-    {% endfor %}
+            <h1>Game</h1> {# soon i18n #}
+            <nav class="secondary">
+                <a href="/" class="selected">All Games</a>
+                <a href="/de">Deutsch</a>
+                <a href="/en">English</a>
+                <a href="/es">Español</a>
+                <a href="/fr">Français</a>
+            </nav>
+        {% for game in games %}
+            <a href="/game/{{ game.id }}">{{ game.name }}</a>
+        {% else %}
+            <p>No games found.</p>
+        {% endfor %}
 {% endblock content %}
