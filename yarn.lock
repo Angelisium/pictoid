@@ -139,7 +139,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express@npm:^4.17.13":
+"@types/express-session@npm:^1.17.5":
+  version: 1.17.5
+  resolution: "@types/express-session@npm:1.17.5"
+  dependencies:
+    "@types/express": "*"
+  checksum: f6995f7720a18546bcb10cc707cf8c9c92455eb4319c0c50c57e9b9b10ed20dc379d74d5e4c3323fe4e924238b75e13c97822c9d81a80fa064ddc71654c1059d
+  languageName: node
+  linkType: hard
+
+"@types/express@npm:*, @types/express@npm:^4.17.13":
   version: 4.17.13
   resolution: "@types/express@npm:4.17.13"
   dependencies:
@@ -1569,6 +1578,7 @@ __metadata:
   dependencies:
     "@types/dotenv": ^8.2.0
     "@types/express": ^4.17.13
+    "@types/express-session": ^1.17.5
     "@types/mongodb": ^4.0.7
     "@types/node": ^18.7.6
     "@types/nunjucks": ^3.2.1

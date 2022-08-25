@@ -2,14 +2,24 @@ import fs from 'fs';
 import http from 'http';
 import https from 'https';
 import dotenv from 'dotenv';
-import express from 'express';
+import express, { ErrorRequestHandler } from 'express';
 import nunjucks from 'nunjucks';
 import { MongoClient, Db } from 'mongodb';
 import { route as HomeController } from './route/Home';
 import TwinoidRouter from './route/Twinoid';
+import session from 'express-session';
 
 declare global {
 	var mongo: Db
+}
+
+declare module "express-session" {
+	interface SessionData {
+		twinoidId?: number;
+		twinoidToken?: string;
+		username?: string;
+		avatarUrl?: string;
+	}
 }
 
 async function run(port: number) {
@@ -39,11 +49,28 @@ async function run(port: number) {
 		watch: process.env.NODE_ENV === "development"
 	});
 
+	exprs.use(
+		session({
+			secret: "pioupouet",
+			cookie: {
+				secure: process.env.NODE_ENV !== "development",
+				maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
+			},
+			saveUninitialized: true,
+			resave: false,
+		})
+	);
+
 	exprs.use(express.static('public'));
 	exprs.get('/', HomeController);
 	exprs.get('/:locale', HomeController);
 
-	exprs.get('/oauth', TwinoidRouter);
+	exprs.use('/oauth', TwinoidRouter);
+
+	exprs.use((function (err, req, res, next) {
+		console.error(err.stack);
+		res.status(500).send('Something broke!');
+	}) as ErrorRequestHandler);
 
 	const ser1 = http.createServer(exprs);
 	ser1.listen(parseInt(process.env.HTTP_PORT || '8080'));
