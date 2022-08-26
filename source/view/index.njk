@@ -14,14 +14,14 @@
 			<img src="{{ user.avatar }}" alt="User Image">
 			<span>{{ user.username }}</span>
 		{% else %}
-			<a href="/oauth/login">Login</a> {# soon i18n, temp /?user=true real : /oauth/twinoid #}
+			<a href="/oauth/login">Login</a> {# soon i18n #}
 		{% endif %}
 		</nav>
 		<main>
 			{% block content %}No Content{% endblock content %}
 		</main>
 		<footer>
-			<p>Application Twinoïd conçue par un joueur pour les joueurs. La plupart des images sont la propriété de Motion Twin.</p>
+			<p>Application Twinoïd conçue par un joueur pour les joueurs. La plupart des images sont la propriété de Motion Twin.</p> {# soon i18n #}
 			<ul>
 				<li><img src="//data.twinoid.com/img/flags/de.png" alt="Deutsch"></li>
 				<li><img src="//data.twinoid.com/img/flags/en.png" alt="English"></li>
