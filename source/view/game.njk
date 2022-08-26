@@ -1,0 +1,34 @@
+{% extends 'index.njk' %}
+
+{% block title %} | {{ game.name }}{% endblock title %} {# soon i18n #}
+
+{% block content %}
+			<h1>{{ game.name }}</h1>
+			<div class="cards">
+				{% for stat in game.stats %}
+					<div class="rcard">
+						<div class="rcard-head">
+							<h2>{{ stat.name }}</h2>
+							{% if stat.description %}
+								<p>{{ stat.description }}</p>
+							{% endif %}
+							{% if stat.icon %}
+								<img src="{{ stat.icon }}" alt="{{ stat.name }}">
+							{% endif %}
+						</div>
+						{% for achievement in stat.achievement %}
+							{% if (achievement.type == "icon") %}
+								<p>blabla 1</p>
+							{% elif (achievement.type == "title") %}
+								<p>blabla 2</p>
+							{% elif (achievement.type == "default") %}
+								<p>blabla 3</p>
+							{% else %}
+								<p>{{ achievement.type }}</p>
+							{% endif %}
+						{% endfor %}
+					</div>
+				{% endfor %}
+			</div>
+			<p>Hello World</p>
+{% endblock content %}
