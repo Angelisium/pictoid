@@ -1,1 +1,2 @@
 .yarn/* linguist-vendored
+.env.example linguist-vendored
