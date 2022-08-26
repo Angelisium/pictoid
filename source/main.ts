@@ -2,12 +2,15 @@ import fs from 'fs';
 import http from 'http';
 import https from 'https';
 import dotenv from 'dotenv';
-import express, { ErrorRequestHandler } from 'express';
 import nunjucks from 'nunjucks';
-import { MongoClient, Db } from 'mongodb';
-import { route as HomeController } from './route/Home';
-import TwinoidRouter from './route/Twinoid';
 import session from 'express-session';
+import { MongoClient, Db } from 'mongodb';
+import express, { ErrorRequestHandler } from 'express';
+
+import { route as HomeController } from './route/Home';
+import { route as GameController } from './route/Game';
+import { route as OauthLoginController } from './route/oauth/Login';
+import { route as OauthCallbackController } from './route/oauth/Callback';
 
 declare global {
 	var mongo: Db
@@ -64,8 +67,9 @@ async function run(port: number) {
 	exprs.use(express.static('public'));
 	exprs.get('/', HomeController);
 	exprs.get('/:locale', HomeController);
-
-	exprs.use('/oauth', TwinoidRouter);
+	exprs.get('/:locale/game/:id', GameController);
+	exprs.use('/oauth/login', OauthLoginController);
+	exprs.use('/oauth/callback', OauthCallbackController);
 
 	exprs.use((function (err, req, res, next) {
 		console.error(err.stack);
