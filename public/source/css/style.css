@@ -45,6 +45,7 @@ body>main {
 body>main>* {
 	margin: 0;
 }
+
 body>main>*:not(:first-child) {
 	margin-top: 15px;
 }
@@ -55,14 +56,14 @@ body>main h1 {
 }
 
 body>main nav.secondary a {
-    display: inline-block;
+	display: inline-block;
 	border-top: 2px solid transparent;
 	color: #444444;
 	font-size: 14px;
 	padding: 10px 15px;
-    line-height: 20px;
+	line-height: 20px;
 	text-decoration: none;
-    cursor: pointer;
+	cursor: pointer;
 }
 
 body>main nav.secondary a:hover {
@@ -81,4 +82,74 @@ body>footer {
 	border-top: 1px solid #d2d6de;
 	color: #444444;
 	font-size: 14px;
+}
+
+
+/* TEMP */
+
+.cards {
+	column-width: 300px;
+	column-gap: 5px;
+	max-width: 1560px;
+	margin: 0 auto;
+}
+
+.game-card {
+	width: min(90vw, 300px);
+	padding: min(10px, 3vw);
+	box-sizing: border-box;
+	background: #ffffff;
+	border-radius: 3px;
+	margin: 0 auto;
+	page-break-inside: avoid;
+	break-inside: avoid-column;
+}
+
+.game-card:not(:first-child) {
+	margin-top: 10px;
+}
+
+.game-card-head {
+	display: inline-flex;
+	font-size: min(4vw, 14px);
+	justify-content: space-between;
+	width: 100%;
+}
+
+.game-card-head>img {
+	width: min(45vw, 135px);
+}
+
+.game-card h2 {
+	font-size: min(5vw, 16px);
+	font-weight: 100;
+	text-align: center;
+}
+
+.game-card td:first-child {
+	text-align: right;
+	font-weight: 600;
+}
+
+.game-card .progress {
+	height: 10px;
+	background-color: #b3b8c7;
+}
+
+.game-card .progress .bar {
+	height: 10px;
+	background-color: #3c8dbc;
+}
+
+.game-card a {
+	border-radius: 3px;
+	border: 1px solid #347aa3;
+	background-color: #3c8dbc;
+	text-transform: uppercase;
+	color: #fff;
+	display: block;
+	padding: 6px 12px;
+	text-align: center;
+	margin-top: 6px;
+	text-decoration: none;
 }
