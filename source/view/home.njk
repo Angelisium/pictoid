@@ -14,7 +14,7 @@
 			{% if (games.length > 0) %}
 				<div class="games">
 					{% for game in games %}
-						<div class="game" data-locale="{{ game.lang }}">
+						<div class="game" data-locale="{{ game.lang if game.lang else "all" }}">
 							<div class="information">
 								<img class="cover" src="{{ game.cover }}" alt="{{ game.name }}">
 								<div>
