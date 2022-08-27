@@ -31,13 +31,13 @@ export interface Achievement {
 	},
 	// date:string
 	name: string,        // The name of the reward category
-	stat: string,        // The reward category id (statId)
 	npoints: number,     // float.. ???
 	description: string, // The description of the reward category
 	points: number,      // int.. 
 	score: number,       // Score to be reached in the reward category to obtain this reward
-	id: string,          // unique id composed of : siteId_statId_index
+	_id: string,          // unique id composed of : siteId_statId_index
 	index: number,       // 
 
-	game: number         // 
+	statId: string,      // The reward category id (statId)
+	gameId: number,
 }
