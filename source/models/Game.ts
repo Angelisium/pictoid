@@ -27,10 +27,10 @@ export interface Game {
 	icon: string,
 	host: string,
 	lang: string,
+	name: string,
 	infos: Array<{
 		id: string,
 		lang: string,
-		name: string,
 		description: string,
 		cover: string,
 	}>

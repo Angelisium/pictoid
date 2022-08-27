@@ -1,10 +1,11 @@
 import * as api from "../utils/api"
 import * as models from "../models"
+import { runJob } from "../job";
 
-export default async (twinId: number, token: string): Promise<boolean> => {
+export default async (twinId: number, token: string, useContacts: boolean = false): Promise<boolean> => {
 	const user = await api.getUserInfos(token, twinId, {
 		id: true,
-		// contacts: { user: { id: true } },
+		contacts: useContacts ? { user: { id: true } } : undefined,
 		sites: {
 			realId: true,
 			site: {
@@ -70,13 +71,13 @@ export default async (twinId: number, token: string): Promise<boolean> => {
 
 		gamesToInsert.push({
 			_id: userSite.site.id.toString(),
-			icon: userSite.site.icon.url,
+			icon: userSite.site.icon?.url,
 			host: userSite.site.host,
 			lang: userSite.site.lang,
+			name: userSite.site.name,
 			infos: userSite.site.infos.map(info => ({
 				id: info.id.toString(),
-				cover: info.cover.url,
-				name: info.cover.url,
+				cover: info.cover?.url,
 				lang: info.lang,
 				description: info.description,
 			})),
@@ -113,7 +114,7 @@ export default async (twinId: number, token: string): Promise<boolean> => {
 					title: achievement.data.title,
 					prefix: achievement.data.prefix,
 					suffix: achievement.data.suffix,
-					url: achievement.data.url,
+					url: achievement.data?.url,
 				},
 				name: achievement.name,
 				npoints: achievement.npoints,
@@ -145,6 +146,10 @@ export default async (twinId: number, token: string): Promise<boolean> => {
 	}
 
 	await Promise.all(promises);
+
+	for (const contact of user.contacts ?? []) {
+		runJob("computeUserStats", contact.user.id, token, false)
+	}
 
 	return true;
 }
