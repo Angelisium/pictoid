@@ -7,6 +7,12 @@ services:
     ports:
       - "27017:27017"
   
+  mongo-exoress:
+    image: mongo-express
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+
   redis:
     image: redis
     restart: unless-stopped

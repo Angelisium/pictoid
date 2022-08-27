@@ -21,4 +21,14 @@
 		icons: Array<{tag: String, altTag: Null<String>, url: String, type: String}> // type = icon|image
 	}
 */
-export class Game { }
+
+export interface Game {
+	id: number,
+	name: string,
+	description: string,
+	host: string,
+	icon: string,
+	cover: string,
+	lang: string, // null si multilingue
+	status: string, // hide, soon, beta, open
+}

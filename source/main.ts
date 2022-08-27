@@ -12,10 +12,9 @@ import { route as HomeController } from './route/Home';
 import { route as GameController } from './route/Game';
 import { route as OauthLoginController } from './route/oauth/Login';
 import { route as OauthCallbackController } from './route/oauth/Callback';
+import { connectToDatabase } from './mongo';
 
-declare global {
-	var mongo: Db
-}
+
 
 declare module "express-session" {
 	interface SessionData {
@@ -26,24 +25,12 @@ declare module "express-session" {
 	}
 }
 
-async function run(port: number) {
+async function run() {
 	dotenv.config();
-	if (!process.env.MONGO_URL || !process.env.MONGO_DBN) {
-		return console.error("Unknown mongo information");
-	}
+
 	const exprs = express();
-	const mongo = new MongoClient(process.env.MONGO_URL);
-	try {
-		await mongo.connect();
-		console.log("Connected correctly to MongoDB server");
-	} catch (e) {
-		if (typeof e === "string") {
-			return console.error(e);
-		} else if (e instanceof Error) {
-			return console.error(e.message);
-		}
-	}
-	global.mongo = mongo.db(process.env.MONGO_DBN);
+	if (!await connectToDatabase())
+		return;
 
 	nunjucks.configure('source/view', {
 		autoescape: true,
@@ -91,4 +78,4 @@ async function run(port: number) {
 	}
 }
 
-run(parseInt(process.argv?.[2] || '3000'));
+run();

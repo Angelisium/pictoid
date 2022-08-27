@@ -48,7 +48,7 @@ function computeFields(fields: Fields<any>): string | undefined {
 	return f.join(',')
 }
 
-export async function getUserInfos(token: string, userId?: string, fields: Fields<User> = true): Promise<WithError<User>> {
-
+// TODO: correct typing for return type, based of fields.
+export async function getUserInfos(token: string, userId?: number, fields: Fields<User> = true): Promise<WithError<User>> {
 	return await fetchTwinoidApi(token, userId ? "user/" + userId : "me", fields);
 }

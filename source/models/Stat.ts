@@ -9,4 +9,12 @@
 		social: Bool
 	}
 */
-export class Stat { }
+export interface Stat {
+	id: string,
+	name: string,
+	icon: string | null,
+	description: string,
+	rare: number,
+
+	achivement: string,
+}
