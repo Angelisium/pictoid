@@ -77,21 +77,21 @@ export async function route(req: Request, res: Response) {
 				name: "niveaux réussis",
 				description: null,
 				rare: false,
-				achievement: [{}]
+				achievement: []
 			}, {
 				id: "planets",
 				name: "Planètes explorées",
 				description: null,
 				icon: "http://www.alphabounce.com/img/icons/small_forum_read.gif",
 				rare: false,
-				achievement: [{}]
+				achievement: []
 			}, {
 				id: "mission",
 				name: "missions accomplies",
 				description: null,
 				icon: "http://www.alphabounce.com/img/icons/small_fuel_free.gif",
 				rare: true,
-				achievement: [{}]
+				achievement: []
 			}]
 		},
 		user: req.session.twinoidId ? {
