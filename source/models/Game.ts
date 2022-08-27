@@ -24,11 +24,15 @@
 
 export interface Game {
 	_id: string,
-	name: string,
-	description: string,
-	host: string,
 	icon: string,
-	cover: string,
-	lang: string, // null si multilingue
+	host: string,
+	lang: string,
+	infos: Array<{
+		id: string,
+		lang: string,
+		name: string,
+		description: string,
+		cover: string,
+	}>
 	status: string, // hide, soon, beta, open
 }

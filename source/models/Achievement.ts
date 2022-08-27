@@ -39,5 +39,5 @@ export interface Achievement {
 	index: number,       // 
 
 	statId: string,      // The reward category id (statId)
-	gameId: number,
+	gameId: string,
 }

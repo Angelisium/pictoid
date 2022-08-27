@@ -17,5 +17,5 @@ export interface Stat {
 	description: string,
 	rare: number,
 
-	gameId: number,
+	gameId: string,
 }

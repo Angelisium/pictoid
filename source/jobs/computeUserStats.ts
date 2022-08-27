@@ -65,21 +65,23 @@ export default async (twinId: number, token: string): Promise<boolean> => {
 
 	for (const userSite of user.sites ?? []) {
 		// Add missing sites 
-		for (const siteInfo of userSite.site.infos ?? []) {
-			if (existingGames.includes(siteInfo.id.toString()))
-				continue;
+		if (existingGames.includes(userSite.site.id.toString()))
+			continue;
 
-			gamesToInsert.push({
-				_id: siteInfo.id.toString(),
-				host: userSite.site.host,
-				icon: userSite.site.icon.url,
-				cover: siteInfo.cover.url,
-				name: userSite.site.name,
-				lang: siteInfo.lang,
-				status: userSite.site.status,
-				description: siteInfo.description,
-			});
-		}
+		gamesToInsert.push({
+			_id: userSite.site.id.toString(),
+			icon: userSite.site.icon.url,
+			host: userSite.site.host,
+			lang: userSite.site.lang,
+			infos: userSite.site.infos.map(info => ({
+				id: info.id.toString(),
+				cover: info.cover.url,
+				name: info.cover.url,
+				lang: info.lang,
+				description: info.description,
+			})),
+			status: userSite.site.status,
+		})
 
 		// Add missing stats
 		for (const stat of userSite.stats ?? []) {
@@ -95,7 +97,7 @@ export default async (twinId: number, token: string): Promise<boolean> => {
 				description: stat.description,
 				rare: stat.rare,
 
-				gameId: userSite.site.id,
+				gameId: userSite.site.id.toString(),
 			});
 		}
 
@@ -120,7 +122,7 @@ export default async (twinId: number, token: string): Promise<boolean> => {
 				score: achievement.score,
 				index: achievement.index,
 
-				gameId: userSite.site.id,
+				gameId: userSite.site.id.toString(),
 				statId: achievement.stat,
 			});
 		}
