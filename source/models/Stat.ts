@@ -13,7 +13,7 @@ export interface Stat {
 	_id: string, // gameId_statId
 	id: string,
 	name: string,
-	icon: string | null,
+	icon?: string,
 	description: string,
 	rare: number,
 

@@ -20,6 +20,7 @@
 */
 
 export interface Achievement {
+	_id: string,          // unique id composed of : siteId_statId_index
 	data: {
 		type: string,           // know type : title, image, ???
 		// type title :
@@ -35,7 +36,6 @@ export interface Achievement {
 	description: string, // The description of the reward category
 	points: number,      // int.. 
 	score: number,       // Score to be reached in the reward category to obtain this reward
-	_id: string,          // unique id composed of : siteId_statId_index
 	index: number,       // 
 
 	statId: string,      // The reward category id (statId)

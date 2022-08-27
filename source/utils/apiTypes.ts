@@ -80,7 +80,7 @@ export interface Stat {
 	id: string,
 	score: number,
 	name: string,
-	icon: string | null,
+	icon: string | null | { url: string },
 	description: string,
 	rare: number,
 	social: boolean

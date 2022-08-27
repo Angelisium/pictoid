@@ -91,7 +91,7 @@ export default async (twinId: number, token: string): Promise<boolean> => {
 				_id: id,
 				id: stat.id,
 				name: stat.name,
-				icon: stat.icon,
+				icon: typeof stat.icon === "string" ? stat.icon : stat.icon?.url,
 				description: stat.description,
 				rare: stat.rare,
 
