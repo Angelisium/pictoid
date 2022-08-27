@@ -4,44 +4,37 @@ import { Fields, SiteUser, User } from "../utils/apiTypes";
 
 function computeUser(
 	user: User,
-	existingGames: string[],
-	existingStats: string[],
-	existingAchivements: string[],
+	existingGames: Set<string>,
+	existingStats: Set<string>,
+	existingAchivements: Set<string>,
 	gamesToInsert: models.Game[],
 	statsToInsert: models.Stat[],
 	achivementsToInsert: models.Achievement[],
 ): void {
 	for (const userSite of user.sites ?? []) {
 		// Add missing sites 
-		if (existingGames.includes(userSite.site.id.toString()))
-			continue;
-
-		gamesToInsert.push({
-			_id: userSite.site.id.toString(),
-			icon: userSite.site.icon?.url,
-			host: userSite.site.host,
-			lang: userSite.site.lang,
-			name: userSite.site.name,
-			infos: userSite.site.infos?.map(function (info) {
-				let coverName = info.cover?.url || '393_b591';
-				if (coverName != '393_b591') {
-					coverName = coverName.split(/\/|\./).slice(-2, -1)[0];
-				}
-				return {
+		if (!existingGames.has(userSite.site.id.toString())) {
+			gamesToInsert.push({
+				_id: userSite.site.id.toString(),
+				icon: userSite.site.icon?.url,
+				host: userSite.site.host,
+				lang: userSite.site.lang,
+				name: userSite.site.name,
+				infos: userSite.site.infos?.map((info) => ({
 					id: info.id.toString(),
-					cover: coverName || '393_b591',
+					cover: info.cover?.url?.split(/\/|\./).slice(-2, -1)?.[0] || '393_b591',
 					lang: info.lang,
 					description: info.description
-				}
-			}),
-			status: userSite.site.status,
-		});
-		existingGames.push(userSite.site.id.toString());
+				})),
+				status: userSite.site.status,
+			});
+			existingGames.add(userSite.site.id.toString());
+		}
 
 		// Add missing stats
 		for (const stat of userSite.stats ?? []) {
 			const id = `${userSite.site.id}_${stat.id}`
-			if (existingStats.includes(id))
+			if (existingStats.has(id))
 				continue;
 
 			statsToInsert.push({
@@ -54,12 +47,12 @@ function computeUser(
 
 				gameId: userSite.site.id.toString(),
 			});
-			existingStats.push(id);
+			existingStats.add(id);
 		}
 
 		// Add missing achievements
 		for (const achievement of userSite.achievements ?? []) {
-			if (existingAchivements.includes(achievement.id))
+			if (existingAchivements.has(achievement.id))
 				continue;
 
 			achivementsToInsert.push({
@@ -81,7 +74,7 @@ function computeUser(
 				gameId: userSite.site.id.toString(),
 				statId: achievement.stat,
 			});
-			existingAchivements.push(achievement.id);
+			existingAchivements.add(achievement.id);
 		}
 	}
 }
@@ -140,11 +133,9 @@ export default async (twinId: number, token: string): Promise<boolean> => {
 		return false;
 	}
 
-	const existingGames: string[] = await collections.games.find({}, { projection: { _id: 1 } }).map(game => game._id).toArray();
-	const existingStats: string[] = await collections.stats.find({}, { projection: { _id: 1 } }).map(stat => stat._id).toArray();
-	const existingAchivements: string[] = await collections.achivements.find({}, { projection: { _id: 1 } }).map(ac => ac._id).toArray();
-
-	// console.log(JSON.stringify(user, null, 2))
+	const existingGames: Set<string> = new Set(await collections.games.find({}, { projection: { _id: 1 } }).map(game => game._id).toArray());
+	const existingStats: Set<string> = new Set(await collections.stats.find({}, { projection: { _id: 1 } }).map(stat => stat._id).toArray());
+	const existingAchivements: Set<string> = new Set(await collections.achivements.find({}, { projection: { _id: 1 } }).map(ac => ac._id).toArray());
 
 	const gamesToInsert: models.Game[] = []
 	const statsToInsert: models.Stat[] = []
@@ -160,15 +151,15 @@ export default async (twinId: number, token: string): Promise<boolean> => {
 
 	if (gamesToInsert.length > 0) {
 		console.log(`Inserting ${gamesToInsert.length} games`);
-		collections.games.insertMany(gamesToInsert);
+		await collections.games.insertMany(gamesToInsert);
 	}
 	if (statsToInsert.length > 0) {
 		console.log(`Inserting ${statsToInsert.length} stats`);
-		collections.stats.insertMany(statsToInsert);
+		await collections.stats.insertMany(statsToInsert);
 	}
 	if (achivementsToInsert.length > 0) {
 		console.log(`Inserting ${achivementsToInsert.length} achievements`);
-		collections.achivements.insertMany(achivementsToInsert);
+		await collections.achivements.insertMany(achivementsToInsert);
 	}
 
 	await Promise.all(promises);
