@@ -84,64 +84,76 @@ body>footer {
 	font-size: 14px;
 }
 
-
-/* TEMP */
-
-.cards {
-	column-width: 300px;
+.games,
+.statistics {
 	column-gap: 5px;
+	margin: 0 auto;
+}
+
+.games {
+	column-width: 300px;
 	max-width: 1560px;
-	margin: 0 auto;
 }
 
-.game-card {
-	width: min(90vw, 300px);
-	padding: min(10px, 3vw);
-	box-sizing: border-box;
-	background: #ffffff;
+.statistics {
+	column-width: 380px;
+	max-width: 1534px;
+}
+
+.game,
+.statistic {
 	border-radius: 3px;
-	margin: 0 auto;
-	page-break-inside: avoid;
+	box-sizing: border-box;
 	break-inside: avoid-column;
+	margin: 0 auto;
+	max-width: 90vw;
+	page-break-inside: avoid;
 }
 
-.game-card:not(:first-child) {
+.game:not(:first-child),
+.statistic:not(:first-child) {
 	margin-top: 10px;
 }
 
-.game-card-head {
+.game {
+	background: #ffffff;
+	padding: min(10px, 3vw);
+	width: 300px;
+}
+
+.game .information {
 	display: inline-flex;
 	font-size: min(4vw, 14px);
 	justify-content: space-between;
 	width: 100%;
 }
 
-.game-card-head>img {
+.game .cover {
 	width: min(45vw, 135px);
 }
 
-.game-card h2 {
+.game .name {
 	font-size: min(5vw, 16px);
 	font-weight: 100;
 	text-align: center;
 }
 
-.game-card td:first-child {
+.game td:first-child {
 	text-align: right;
 	font-weight: 600;
 }
 
-.game-card .progress {
+.game .progress {
 	height: 10px;
 	background-color: #b3b8c7;
 }
 
-.game-card .progress .bar {
+.game .progress .bar {
 	height: 10px;
 	background-color: #3c8dbc;
 }
 
-.game-card a {
+.game .button {
 	border-radius: 3px;
 	border: 1px solid #347aa3;
 	background-color: #3c8dbc;
@@ -152,4 +164,70 @@ body>footer {
 	text-align: center;
 	margin-top: 6px;
 	text-decoration: none;
+}
+
+.statistic {
+	background: #3c8dbc;
+	padding: 1px;
+	position: relative;
+	width: 380px;
+}
+
+.statistic .information {
+	position: relative;
+	color: #ffffff;
+	text-align: center;
+	margin: 10px;
+}
+
+.statistic .icon {
+	position: absolute;
+	top: 4px;
+	left: 4px;
+}
+
+.statistic .name {
+	font-size: 18px;
+	font-weight: 100;
+	margin: 0;
+}
+
+.statistic .description {
+	font-size: 10px;
+	opacity: 0.9;
+	margin: 0;
+}
+
+.achievement {
+	background: white;
+	display: flex;
+	justify-content: space-between;
+	min-height: 24px;
+	padding: 4px 0;
+}
+
+.achievement~.achievement {
+	border-top: 1px dashed #3b4151;
+}
+
+.achievement:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
+.achievement span {
+	align-self: center;
+	box-sizing: border-box;
+	font-size: 14px;
+	width: min(13vw, 56px);
+}
+
+.achievement span:first-child {
+	text-align: right;
+}
+
+.achievement span:nth-child(2n) {
+	padding: 0 8px;
+	text-align: center;
+	width: min(62vw, 266px);
 }
