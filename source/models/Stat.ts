@@ -10,11 +10,12 @@
 	}
 */
 export interface Stat {
+	_id: string, // gameId_statId
 	id: string,
 	name: string,
 	icon: string | null,
 	description: string,
 	rare: number,
 
-	achivement: string,
+	gameId: number,
 }
