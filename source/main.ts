@@ -8,10 +8,10 @@ import session from 'express-session';
 import { MongoClient, Db } from 'mongodb';
 import express, { ErrorRequestHandler } from 'express';
 
-import { route as HomeController } from './route/Home';
-import { route as GameController } from './route/Game';
-import { route as OauthLoginController } from './route/oauth/Login';
-import { route as OauthCallbackController } from './route/oauth/Callback';
+import { route as HomeController } from './routes/Home';
+import { route as GameController } from './routes/Game';
+import { route as OauthLoginController } from './routes/oauth/Login';
+import { route as OauthCallbackController } from './routes/oauth/Callback';
 import { connectToDatabase } from './mongo';
 
 
