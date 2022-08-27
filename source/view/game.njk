@@ -4,31 +4,34 @@
 
 {% block content %}
 			<h1>{{ game.name }}</h1>
-			<div class="cards">
+			<div class="statistics">
 				{% for stat in game.stats %}
-					<div class="rcard">
-						<div class="rcard-head">
-							<h2>{{ stat.name }}</h2>
-							{% if stat.description %}
-								<p>{{ stat.description }}</p>
-							{% endif %}
-							{% if stat.icon %}
-								<img src="{{ stat.icon }}" alt="{{ stat.name }}">
-							{% endif %}
-						</div>
-						{% for achievement in stat.achievement %}
-							{% if (achievement.type == "icon") %}
-								<p>blabla 1</p>
-							{% elif (achievement.type == "title") %}
-								<p>blabla 2</p>
-							{% elif (achievement.type == "default") %}
-								<p>blabla 3</p>
-							{% else %}
-								<p>{{ achievement.type }}</p>
-							{% endif %}
-						{% endfor %}
+				<div class="statistic">
+					<div class="information">
+						{% if stat.icon %}
+							<img class="icon" src="{{ stat.icon }}" alt="{{ stat.name }}">
+						{% endif %}
+						<h2 class="name">{{ stat.name }}</h2>
+						{% if stat.description %}
+							<p class="description">{{ stat.description }}</p>
+						{% endif %}
 					</div>
+					{% for achievement in stat.achievement %}
+							<div class="achievement">
+								<span>x{{ achievement.score }}</span>
+								{% if (achievement.type == "icon") %}
+									<span>
+										<img src="{{ achievement.url }}" alt="{{ achievement.description }}">
+									</span>
+								{% elif (achievement.type == "title") %}
+									<span>{{ achievement.title }}</span>
+								{% else %}
+									<span class="default">{{ achievement.description }}</span>
+								{% endif %}
+								<span>+{{ ((achievement.npoints * 2) | round ) / 2 }}</span>
+							</div>
+					{% endfor %}
+				</div>
 				{% endfor %}
 			</div>
-			<p>Hello World</p>
 {% endblock content %}
