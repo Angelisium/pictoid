@@ -51,8 +51,6 @@ export async function route(req: Request, res: Response) {
 	if (user.error)
 		return res.send(user.error);
 
-	writeFile(`${__dirname}/user.json`, JSON.stringify(user, null, 2))
-
 	req.session.twinoidToken = twinoidToken;
 	req.session.avatarUrl = user.picture?.url;
 	req.session.username = user.name;
