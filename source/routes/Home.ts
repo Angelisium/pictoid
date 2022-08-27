@@ -1,0 +1,485 @@
+import { Request, Response } from 'express';
+
+const temp_game_data = [{
+	id: 1,
+	lang: "all",
+	cover: "/source/img/cover/356_cf63.png",
+	name: "AlphaBounce",
+	stat: 6,
+	achievement: 86,
+	score: 1043,
+	player: 445
+}, {
+	id: 1,
+	lang: "all",
+	cover: "/source/img/cover/536_058b.png",
+	name: "Arkadeo",
+	stat: 48,
+	achievement: 133,
+	score: 1000,
+	player: 495
+}, {
+	id: 1,
+	lang: "all",
+	cover: "/source/img/cover/608_0346.png",
+	name: "Braziball Puzzle",
+	stat: 0,
+	achievement: 0,
+	score: 0,
+	player: 56
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/52_891e.png",
+	name: "CroqueMotel",
+	stat: 11,
+	achievement: 39,
+	score: 1000,
+	player: 427
+}, {
+	id: 1,
+	lang: "de",
+	cover: "/source/img/cover/471_8c8b.png",
+	name: "Die Verdammten",
+	stat: 79,
+	achievement: 248,
+	score: 867,
+	player: 47
+}, {
+	id: 1,
+	lang: "en",
+	cover: "/source/img/cover/105_e90c.png",
+	name: "Die2Nite",
+	stat: 80,
+	achievement: 285,
+	score: 881,
+	player: 162
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/7_efd4.png",
+	name: "DinoRPG",
+	stat: 25,
+	achievement: 203,
+	score: 1000,
+	player: 411
+}, {
+	id: 1,
+	lang: "en",
+	cover: "/source/img/cover/7_efd4.png",
+	name: "DinoRPG",
+	stat: 25,
+	achievement: 173,
+	score: 971,
+	player: 63
+}, {
+	id: 1,
+	lang: "de",
+	cover: "/source/img/cover/7_efd4.png",
+	name: "DinoRPG",
+	stat: 23,
+	achievement: 139,
+	score: 734,
+	player: 24
+}, {
+	id: 1,
+	lang: "es",
+	cover: "/source/img/cover/7_efd4.png",
+	name: "DinoRPG",
+	stat: 24,
+	achievement: 163,
+	score: 942,
+	player: 44
+}, {
+	id: 1,
+	lang: "es",
+	cover: "/source/img/cover/72_720c.png",
+	name: "El Bruto",
+	stat: 13,
+	achievement: 15,
+	score: 1000,
+	player: 48
+}, {
+	id: 1,
+	lang: "es",
+	cover: "/source/img/cover/88_80cf.png",
+	name: "Fever",
+	stat: 37,
+	achievement: 45,
+	score: 671,
+	player: 24
+}, {
+	id: 1,
+	lang: "en",
+	cover: "/source/img/cover/88_80cf.png",
+	name: "Fever",
+	stat: 38,
+	achievement: 47,
+	score: 694,
+	player: 18
+}, {
+	id: 1,
+	lang: "de",
+	cover: "/source/img/cover/88_80cf.png",
+	name: "Fever",
+	stat: 30,
+	achievement: 35,
+	score: 529,
+	player: 2
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/88_80cf.png",
+	name: "Fever!",
+	stat: 44,
+	achievement: 68,
+	score: 932,
+	player: 409
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/9_8956.png",
+	name: "Hordes",
+	stat: 90,
+	achievement: 449,
+	score: 953,
+	player: 486
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/89_165c.png",
+	name: "Intrusion",
+	stat: 20,
+	achievement: 52,
+	score: 1000,
+	player: 415
+}, {
+	id: 1,
+	lang: "all",
+	cover: "/source/img/cover/426_2326.png",
+	name: "KadoKado",
+	stat: 106,
+	achievement: 565,
+	score: 963,
+	player: 467
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/50_305b.png",
+	name: "Kingdom",
+	stat: 8,
+	achievement: 14,
+	score: 1000,
+	player: 415
+}, {
+	id: 1,
+	lang: "en",
+	cover: "/source/img/cover/50_305b.png",
+	name: "Kingdom",
+	stat: 8,
+	achievement: 13,
+	score: 914,
+	player: 34
+}, {
+	id: 1,
+	lang: "es",
+	cover: "/source/img/cover/50_305b.png",
+	name: "Kingdom",
+	stat: 8,
+	achievement: 14,
+	score: 1000,
+	player: 29
+}, {
+	id: 1,
+	lang: "de",
+	cover: "/source/img/cover/50_305b.png",
+	name: "Kingdom",
+	stat: 7,
+	achievement: 7,
+	score: 553,
+	player: 4
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/87_8b36.png",
+	name: "Kube",
+	stat: 10,
+	achievement: 18,
+	score: 1000,
+	player: 361
+}, {
+	id: 1,
+	lang: "en",
+	cover: "/source/img/cover/87_8b36.png",
+	name: "Kube",
+	stat: 9,
+	achievement: 12,
+	score: 530,
+	player: 15
+}, {
+	id: 1,
+	lang: "es",
+	cover: "/source/img/cover/87_8b36.png",
+	name: "Kube",
+	stat: 10,
+	achievement: 14,
+	score: 653,
+	player: 34
+}, {
+	id: 1,
+	lang: "de",
+	cover: "/source/img/cover/87_8b36.png",
+	name: "Kube",
+	stat: 4,
+	achievement: 2,
+	score: 71,
+	player: 5
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/74_2c04.png",
+	name: "La Brute",
+	stat: 13,
+	achievement: 15,
+	score: 1000,
+	player: 437
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/93_1674.png",
+	name: "Majority",
+	stat: 16,
+	achievement: 13,
+	score: 1000,
+	player: 448
+}, {
+	id: 1,
+	lang: "de",
+	cover: "/source/img/cover/335_a392.png",
+	name: "Mein Brutalo",
+	stat: 9,
+	achievement: 9,
+	score: 562,
+	player: 16
+}, {
+	id: 1,
+	lang: "es",
+	cover: "/source/img/cover/205_cb26.png",
+	name: "Minitroopers",
+	stat: 0,
+	achievement: 0,
+	score: 0,
+	player: 0
+}, {
+	id: 1,
+	lang: "all",
+	cover: "/source/img/cover/680_be33.png",
+	name: "Monster Hotel",
+	stat: 123,
+	achievement: 229,
+	score: 1000,
+	player: 442
+}, {
+	id: 1,
+	lang: "en",
+	cover: "/source/img/cover/77_727e.png",
+	name: "Monster Motel",
+	stat: 11,
+	achievement: 39,
+	score: 1000,
+	player: 49
+}, {
+	id: 1,
+	lang: "de",
+	cover: "/source/img/cover/390_d6d2.png",
+	name: "MonsterHotel",
+	stat: 11,
+	achievement: 20,
+	score: 393,
+	player: 8
+}, {
+	id: 1,
+	lang: "es",
+	cover: "/source/img/cover/77_727e.png",
+	name: "MonstruHotel",
+	stat: 11,
+	achievement: 37,
+	score: 885,
+	player: 43
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/71_7ec3.png",
+	name: "MotionBall 2",
+	stat: 37,
+	achievement: 37,
+	score: 1000,
+	player: 379
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/520_699a.png",
+	name: "Mush",
+	stat: 107,
+	achievement: 281,
+	score: 788,
+	player: 485
+}, {
+	id: 1,
+	lang: "es",
+	cover: "/source/img/cover/520_699a.png",
+	name: "Mush",
+	stat: 98,
+	achievement: 239,
+	score: 666,
+	player: 94
+}, {
+	id: 1,
+	lang: "en",
+	cover: "/source/img/cover/520_699a.png",
+	name: "Mush",
+	stat: 101,
+	achievement: 250,
+	score: 749,
+	player: 178
+}, {
+	id: 1,
+	lang: "en",
+	cover: "/source/img/cover/73_ab78.png",
+	name: "MyBrute",
+	stat: 12,
+	achievement: 14,
+	score: 937,
+	player: 48
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/57_a81a.png",
+	name: "Naturalchimie 2",
+	stat: 70,
+	achievement: 251,
+	score: 977,
+	player: 448
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/115_5ab4.png",
+	name: "Odyssey",
+	stat: 138,
+	achievement: 140,
+	score: 978,
+	player: 408
+}, {
+	id: 1,
+	lang: "all",
+	cover: "/source/img/cover/655_e7b9.png",
+	name: "Rockfaller Journey",
+	stat: 38,
+	achievement: 503,
+	score: 1000,
+	player: 479
+}, {
+	id: 1,
+	lang: "es",
+	cover: "/source/img/cover/8_0ce3.png",
+	name: "Snake",
+	stat: 301,
+	achievement: 117,
+	score: 456,
+	player: 26
+}, {
+	id: 1,
+	lang: "en",
+	cover: "/source/img/cover/8_0ce3.png",
+	name: "Snake",
+	stat: 301,
+	achievement: 108,
+	score: 432,
+	player: 26
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/8_0ce3.png",
+	name: "Snake",
+	stat: 304,
+	achievement: 313,
+	score: 1000,
+	player: 422
+}, {
+	id: 1,
+	lang: "de",
+	cover: "/source/img/cover/8_0ce3.png",
+	name: "Snake",
+	stat: 301,
+	achievement: 94,
+	score: 395,
+	player: 4
+}, {
+	id: 1,
+	lang: "all",
+	cover: "/source/img/cover/611_c5fb.png",
+	name: "Street Writer",
+	stat: 42,
+	achievement: 51,
+	score: 1000,
+	player: 443
+}, {
+	id: 1,
+	lang: "fr",
+	cover: "/source/img/cover/43_6e39.png",
+	name: "Studio Quiz",
+	stat: 53,
+	achievement: 46,
+	score: 954,
+	player: 437
+}, {
+	id: 1,
+	lang: "all",
+	cover: "/source/img/cover/501_f9b5.png",
+	name: "Teacher Story",
+	stat: 287,
+	achievement: 491,
+	score: 998,
+	player: 499
+}, {
+	id: 1,
+	lang: "all",
+	cover: "/source/img/cover/393_b591.png",
+	name: "Twinoid",
+	stat: 36,
+	achievement: 23,
+	score: 0,
+	player: 541
+}, {
+	id: 1,
+	lang: "all",
+	cover: "/source/img/cover/606_2c2d.png",
+	name: "Uppercup Football",
+	stat: 1,
+	achievement: 1,
+	score: 11,
+	player: 103
+}, {
+	id: 1,
+	lang: "es",
+	cover: "/source/img/cover/280_7f21.png",
+	name: "Zombinoia",
+	stat: 77,
+	achievement: 244,
+	score: 844,
+	player: 99
+}];
+
+export async function route(req: Request, res: Response) {
+	let locale = req.params?.locale || "fr", // tmp default locale = fr
+		games = await mongo.collection("game").find({ locale }).toArray();
+
+	return res.render('home.njk', {
+		locale, // games,
+		games: temp_game_data,
+		user: req.session.twinoidId ? {
+			username: req.session.username,
+			avatar: req.session.avatarUrl
+		} : false
+	});
+}
