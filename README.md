@@ -15,5 +15,5 @@
 ### TODO :
  - add i18n
  - choose a more appropriate license
- - complete models definition (game, stat and achivement) (1 model / collection)
- - ???
+ - resolve twino api data insertion
+ - polish design
