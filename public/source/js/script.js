@@ -1,11 +1,13 @@
 function applyGameFilter(filtre, target) {
 	let current = document.querySelector('a[data-game].selected'),
-		games = document.querySelectorAll('.games .game');
+		games = document.querySelectorAll('.game[data-locale]');
+	const visibleGame = document.querySelector('.games');
+	const hiddenGame = document.querySelector('.hgames');
 	for(let game of games) {
 		if(filtre === "all" || game.dataset.locale === filtre) {
-			game.removeAttribute('style');
+			visibleGame.append(game);
 		} else {
-			game.setAttribute('style', 'display:none');
+			hiddenGame.append(game);
 		}
 	}
 	if(current) {
