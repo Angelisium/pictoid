@@ -16,7 +16,7 @@
 					{% for game in games %}
 						<div class="game" data-locale="{{ game.lang if game.lang else "all" }}">
 							<div class="information">
-								<img class="cover" src="{{ game.cover }}" alt="{{ game.name }}">
+								<img class="cover" src="/source/img/cover/{{ game.cover }}.png" alt="{{ game.name }}">
 								<div>
 									<h2 class="name">{{ game.name }}</h2>
 									<table>
