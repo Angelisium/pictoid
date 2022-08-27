@@ -8,7 +8,7 @@ export async function route(req: Request, res: Response) {
 		games: games.map(game => ({
 			...game,
 			id: game._id,
-			cover: game.infos[0]?.cover,
+			cover: game?.infos?.[0]?.cover,
 		})),
 		user: req.session.twinoidId ? {
 			username: req.session.username,
