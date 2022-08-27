@@ -4,13 +4,19 @@ export interface TokenResponse {
     "token_type": "Bearer"
 }
 
+export type Fields<T> = {
+    [Property in keyof T]?: T[Property] extends Array<any> ? Fields<T[Property][number]>
+    : T[Property] extends object ? Fields<T[Property]>
+    : true
+} | true;
+
 export interface User {
     id: number,
     name: string,
     picture?: { url: string },
     locale: string,
     title: string,
-    oldNames: Array<{ name: string, until: Date }>,
+    oldNames: Array<{ name: string, until: string }>,
     sites: Array<SiteUser>, // .filter(siteId)
     like: Like,
     gender: string, // male, female, null
@@ -89,7 +95,7 @@ export interface Achievement {
     npoints: number, // float
     description: string,
     data: { type: string, title?: string, url?: string, prefix?: boolean, suffix?: boolean },
-    date: Date,
+    date: string,
     index: number
 }
 
@@ -105,7 +111,7 @@ export interface Application {
     // reserved to owner + scope applications
     access: string, // OwnerOnly, OwnerContacts, Everyone
     dailyQuota: number,
-    stats: Array<{ date: Date, calls: number, users: number }> // .filter(date)
+    stats: Array<{ date: string, calls: number, users: number }> // .filter(date)
 }
 
 export interface Group {
