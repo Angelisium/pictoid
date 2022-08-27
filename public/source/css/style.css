@@ -97,6 +97,10 @@ body>footer {
 	margin: 0 auto;
 }
 
+.hgames {
+	display: none;
+}
+
 .games {
 	column-width: 300px;
 	max-width: 1560px;
