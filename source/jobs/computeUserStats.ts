@@ -22,12 +22,18 @@ function computeUser(
 			host: userSite.site.host,
 			lang: userSite.site.lang,
 			name: userSite.site.name,
-			infos: userSite.site.infos?.map(info => ({
-				id: info.id.toString(),
-				cover: info.cover?.url,
-				lang: info.lang,
-				description: info.description,
-			})),
+			infos: userSite.site.infos?.map(function (info) {
+				let coverName = info.cover?.url || '393_b591';
+				if (coverName != '393_b591') {
+					coverName = coverName.split(/\/|\./).slice(-2, -1)[0];
+				}
+				return {
+					id: info.id.toString(),
+					cover: coverName || '393_b591',
+					lang: info.lang,
+					description: info.description
+				}
+			}),
 			status: userSite.site.status,
 		});
 		existingGames.push(userSite.site.id.toString());
