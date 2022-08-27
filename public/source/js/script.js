@@ -4,7 +4,7 @@ function applyGameFilter(filtre, target) {
 	const visibleGame = document.querySelector('.games');
 	const hiddenGame = document.querySelector('.hgames');
 	for(let game of games) {
-		if(filtre === "all" || game.dataset.locale === filtre) {
+		if(filtre === "all" || game.dataset.locale === filtre || game.dataset.locale === "all") {
 			visibleGame.append(game);
 		} else {
 			hiddenGame.append(game);
