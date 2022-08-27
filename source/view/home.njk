@@ -11,33 +11,33 @@
 				<a data-game="es">Español</a>
 				<a data-game="fr">Français</a>
 			</nav>
-		{% if (games.length > 0) %}
-			<div class="cards">
-			{% for game in games %}
-				<div class="game-card">
-					<div class="game-card-head">
-						<img src="{{ game.cover }}" alt="{{ game.name }}">
-						<div class="infos">
-							<h2>{{ game.name }}</h2>
-							<table>
-								<tbody>
-									<tr><td>{{ game.stat }}</td><td>statistiques</td></tr> {# soon i18n #}
-									<tr><td>{{ game.achievement }}</td><td>récompenses</td></tr> {# soon i18n #}
-									<tr><td>{{ game.score }}</td><td>points</td></tr> {# soon i18n #}
-									<tr><td>{{ game.player }}</td><td>joueurs</td></tr> {# soon i18n #}
-								</tbody>
-							</table>
+			{% if (games.length > 0) %}
+				<div class="games">
+					{% for game in games %}
+						<div class="game">
+							<div class="information">
+								<img class="cover" src="{{ game.cover }}" alt="{{ game.name }}">
+								<div>
+									<h2 class="name">{{ game.name }}</h2>
+									<table>
+										<tbody>
+											<tr><td>{{ game.stat }}</td><td>statistiques</td></tr> {# soon i18n #}
+											<tr><td>{{ game.achievement }}</td><td>récompenses</td></tr> {# soon i18n #}
+											<tr><td>{{ game.score }}</td><td>points</td></tr> {# soon i18n #}
+											<tr><td>{{ game.player }}</td><td>joueurs</td></tr> {# soon i18n #}
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="progress">
+								{% set percent = game.score / 10 %}
+								<div class="bar" style="width: {{ percent if (percent <= 100) else 100 }}%"></div>
+							</div>
+							<a class="button" href="/{{ locale }}/game/{{ game.id }}">Pictos</a>
 						</div>
-					</div>
-					<div class="progress">
-						{% set percent = game.score / 10 %}
-						<div class="bar" style="width: {{ percent if (percent <= 100) else 100 }}%"></div>
-					</div>
-					<a href="/{{ locale }}/game/{{ game.id }}">Pictos</a>
+					{% endfor %}
 				</div>
-			{% endfor %}
-			</div>
-		{% else %}
-			<p>No games found.</p>
-		{% endif %}
+			{% else %}
+				<p>No games found.</p>
+			{% endif %}
 {% endblock content %}
