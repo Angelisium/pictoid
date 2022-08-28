@@ -1,11 +1,11 @@
 {% extends 'index.njk' %}
 
-{% block title %} | Jeux {% endblock title %} {# soon i18n #}
+{% block title %} | {{ 'home.game' | translate }}{% endblock title %}
 
 {% block content %}
-			<h1>Game</h1> {# soon i18n #}
+			<h1>{{ 'home.game' | translate }}</h1>
 			<nav class="secondary">
-				<a data-game="all" class="selected">All Games</a> {# soon i18n #}
+				<a data-game="all" class="selected">{{ 'home.allgame' | translate }}</a>
 				<a data-game="de">Deutsch</a>
 				<a data-game="en">English</a>
 				<a data-game="es">Español</a>
@@ -21,10 +21,10 @@
 									<h2 class="name">{{ game.name }}</h2>
 									<table>
 										<tbody>
-											<tr><td>{{ game.stat }}</td><td>statistiques</td></tr> {# soon i18n #}
-											<tr><td>{{ game.achievement }}</td><td>récompenses</td></tr> {# soon i18n #}
-											<tr><td>{{ game.score }}</td><td>points</td></tr> {# soon i18n #}
-											<tr><td>{{ game.player }}</td><td>joueurs</td></tr> {# soon i18n #}
+											<tr><td>{{ game.stat        }}</td><td>{{ 'home.suffix.statistics' | translate }}</td></tr>
+											<tr><td>{{ game.achievement }}</td><td>{{ 'home.suffix.awards'     | translate }}</td></tr>
+											<tr><td>{{ game.score       }}</td><td>{{ 'home.suffix.scores'     | translate }}</td></tr>
+											<tr><td>{{ game.player      }}</td><td>{{ 'home.suffix.players'    | translate }}</td></tr>
 										</tbody>
 									</table>
 								</div>
@@ -39,6 +39,6 @@
 				</div>
 				<div class="hgames"></div>
 			{% else %}
-				<p>No games found.</p>
+				<p>{{ 'home.nogame' | translate }}</p>
 			{% endif %}
 {% endblock content %}
