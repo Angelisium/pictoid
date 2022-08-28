@@ -1,5 +1,21 @@
 {
-	"login": "conn",
-	"twinoid_warning": "Application Twinoïd conçue par un joueur pour les joueurs. La plupart des images sont la propriété de Motion Twin.",
-	"hi": "Hello World (fr)"
+	"common": {
+		"login": "Connexion",
+		"logout": "Déconnexion",
+		"credit": {
+			"twinoid": "Application Twinoïd conçue par un joueur pour les joueurs. La plupart des images sont la propriété de Motion Twin.",
+			"": ""
+		}
+	},
+	"home": {
+		"game": "Jeux",
+		"allgame": "Tous les jeux",
+		"nogame": "Il n'y a aucun jeu dans cette catégorie pour l'instant.",
+		"suffix": {
+			"statistics": "statistiques",
+			"awards": "récompenses",
+			"scores": "points",
+			"players": "joueurs"
+		}
+	}
 }
