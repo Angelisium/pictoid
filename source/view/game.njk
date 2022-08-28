@@ -19,12 +19,12 @@
 					{% for achievement in stat.achievement %}
 							<div class="achievement">
 								<span>x{{ achievement.score }}</span>
-								{% if (achievement.type == "icon") %}
+								{% if (achievement.data.type == "icon") %}
 									<span>
-										<img src="{{ achievement.url }}" alt="{{ achievement.description }}">
+										<img src="{{ achievement.data.url }}" alt="{{ achievement.description }}">
 									</span>
-								{% elif (achievement.type == "title") %}
-									<span>{{ achievement.title }}</span>
+								{% elif (achievement.data.type == "title") %}
+									<span>{{ achievement.data.title }}</span>
 								{% else %}
 									<span class="default">{{ achievement.description }}</span>
 								{% endif %}
