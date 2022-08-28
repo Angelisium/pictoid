@@ -1,5 +1,5 @@
 import { MongoClient, Db, Collection } from 'mongodb';
-import * as models from "./models";
+import * as models from "./model";
 
 declare global {
     var mongo: Db
