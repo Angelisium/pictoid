@@ -33,7 +33,7 @@
 					<img src="{{ user.avatar }}" alt="User Image">
 					<span>{{ user.username }}</span>
 				{% else %}
-					<a href="/oauth/login">{{ 'login' | translate }}</a>
+					<a href="/oauth/login">{{ 'common.login' | translate }}</a>
 				{% endif %}
 			</div>
 		</nav>
@@ -41,7 +41,7 @@
 			{% block content %}{% endblock content %}
 		</main>
 		<footer>
-			<p>{{ 'twinoid_warning' | translate }}</p> {# soon i18n #}
+			<p>{{ 'common.credit.twinoid' | translate }}</p>
 			<ul>
 				<li><img src="/source/img/flags/de.png" alt="Deutsch"></li>
 				<li><img src="/source/img/flags/en.png" alt="English"></li>
