@@ -42,6 +42,7 @@ async function run() {
 		directory: path.join(__dirname, 'i18n'),
 		defaultLocale: 'fr',
 		retryInDefaultLocale: true,
+		objectNotation: true,
 		register: global
 	});
 
