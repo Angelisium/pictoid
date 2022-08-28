@@ -1,5 +1,6 @@
 import './job';
 import fs from 'fs';
+import i18n from 'i18n';
 import http from 'http';
 import https from 'https';
 import dotenv from 'dotenv';
@@ -8,14 +9,18 @@ import session from 'express-session';
 import { MongoClient, Db } from 'mongodb';
 import express, { ErrorRequestHandler } from 'express';
 
-import { route as HomeController } from './routes/Home';
-import { route as GameController } from './routes/Game';
-import { route as OauthLoginController } from './routes/oauth/Login';
-import { route as OauthCallbackController } from './routes/oauth/Callback';
+import path from 'path';
+
+import { route as HomeController } from './route/Home';
+import { route as GameController } from './route/Game';
+import { route as OauthLoginController } from './route/oauth/Login';
+import { route as OauthCallbackController } from './route/oauth/Callback';
 import { connectToDatabase } from './mongo';
 
-
-
+declare global {
+	var __: any;
+	var njk: any;
+}
 declare module "express-session" {
 	interface SessionData {
 		twinoidId?: number;
@@ -32,13 +37,23 @@ async function run() {
 	if (!await connectToDatabase())
 		return;
 
-	nunjucks.configure('source/view', {
+	i18n.configure({
+		locales: ['de', 'en', 'es', 'fr'],
+		directory: path.join(__dirname, 'i18n'),
+		defaultLocale: 'fr',
+		retryInDefaultLocale: true,
+		register: global
+	});
+
+	const njk = nunjucks.configure('source/view', {
 		autoescape: true,
 		trimBlocks: true,
 		lstripBlocks: true,
 		express: exprs,
 		watch: process.env.NODE_ENV === "development"
 	});
+	njk.addFilter('translate', __, false);
+	global.njk = njk;
 
 	exprs.use(
 		session({
