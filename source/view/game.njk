@@ -4,37 +4,41 @@
 
 {% block content %}
 			<h1>{{ game.name }}</h1>
-			<div class="statistics">
-				{% for stat in game.stats %}
-				<div class="statistic">
-					<div class="information">
-						{% if stat.icon %}
-							<img class="icon" src="{{ stat.icon }}" alt="{{ stat.name }}">
-						{% endif %}
-						{% if stat.score %}
-							<span class="score">{{ stat.score }}</span>
-						{% endif %}
-						<h2 class="name">{{ stat.name }}</h2>
-						{% if stat.description %}
-							<p class="description">{{ stat.description }}</p>
-						{% endif %}
-					</div>
-					{% for achievement in stat.achievement %}
-							<div class="achievement{% if achievement.userHas %} user-has{% endif %}">
-								<span>x{{ achievement.score }}</span>
-								{% if (achievement.data.type == "icon") %}
-									<span>
-										<img src="{{ achievement.data.url }}" alt="{{ achievement.description }}">
-									</span>
-								{% elif (achievement.data.type == "title") %}
-									<span>{{ achievement.data.title }}</span>
-								{% else %}
-									<span class="default">{{ achievement.description }}</span>
+			{% if game.stats %}
+				<div class="statistics">
+					{% for stat in game.stats %}
+						<div class="statistic">
+							<div class="information">
+								{% if stat.icon %}
+									<img class="icon" src="{{ stat.icon }}" alt="{{ stat.name }}">
 								{% endif %}
-								<span>+{{ ((achievement.npoints * 2) | round ) / 2 }}</span>
+								{% if stat.score %}
+									<span class="score">{{ stat.score }}</span>
+								{% endif %}
+								<h2 class="name">{{ stat.name }}</h2>
+								{% if stat.description %}
+									<p class="description">{{ stat.description }}</p>
+								{% endif %}
 							</div>
+							{% for achievement in stat.achievement %}
+									<div class="achievement{% if achievement.userHas %} user-has{% endif %}">
+										<span>x{{ achievement.score }}</span>
+										{% if (achievement.data.type == "icon") %}
+											<span>
+												<img src="{{ achievement.data.url }}" alt="{{ achievement.description }}">
+											</span>
+										{% elif (achievement.data.type == "title") %}
+											<span>{{ achievement.data.title }}</span>
+										{% else %}
+											<span class="default">{{ achievement.description }}</span>
+										{% endif %}
+										<span>+{{ ((achievement.npoints * 2) | round ) / 2 }}</span>
+									</div>
+							{% endfor %}
+						</div>
 					{% endfor %}
 				</div>
-				{% endfor %}
-			</div>
+			{% else %}
+				<p>{{ 'game.nostat' | translate }}</p>
+			{% endif %}
 {% endblock content %}
