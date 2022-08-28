@@ -242,3 +242,17 @@ body>footer {
 	text-align: center;
 	width: min(62vw, 266px);
 }
+
+footer p {
+	margin: 0;
+	padding: 6px 12px;
+}
+
+footer ul {
+	margin: 6px 12px;
+	padding: 0;
+}
+
+footer li {
+	display: inline-block;
+}
