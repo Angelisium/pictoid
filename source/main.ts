@@ -54,6 +54,14 @@ async function run() {
 		watch: process.env.NODE_ENV === "development"
 	});
 	njk.addFilter('translate', __, false);
+	njk.addFilter('randlist', function (arr: Array<any>) {
+		let unsuffled = arr.map(value => ({ value, sort: Math.random() })),
+			suffled = unsuffled.sort((a, b) => a.sort - b.sort);
+		return suffled.map(({ value }) => value);
+	}, false);
+	njk.addFilter('ultratrim', function (str: string) {
+		return str.replace(/(\s{2,}|\n)/g, ' ').trim();
+	}, false);
 	global.njk = njk;
 
 	exprs.use(
