@@ -1,3 +1,4 @@
+{% from "./component/credit.njk" import credit %}
 <!DOCTYPE html>
 <html lang="{{ locale }}">
 	<head>
@@ -42,11 +43,13 @@
 		</main>
 		<footer>
 			<p>{{ 'common.credit.twinoid' | translate }}</p>
+			<p>{{ credit() | safe }}</p>
 			<ul>
-				<li><img src="/source/img/flags/de.png" alt="Deutsch"></li>
-				<li><img src="/source/img/flags/en.png" alt="English"></li>
-				<li><img src="/source/img/flags/es.png" alt="Español"></li>
-				<li><img src="/source/img/flags/fr.png" alt="Français"></li>
+				<li>{{ 'common.locales' | translate }}</li>
+				<li><a href="/de"><img src="/source/img/flags/de.png" alt="Deutsch"></a></li>
+				<li><a href="/en"><img src="/source/img/flags/en.png" alt="English"></a></li>
+				<li><a href="/es"><img src="/source/img/flags/es.png" alt="Español"></a></li>
+				<li><a href="/fr"><img src="/source/img/flags/fr.png" alt="Français"></a></li>
 			</ul>
 		</footer>
 		<script src="/source/js/script.js"></script>
