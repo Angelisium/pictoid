@@ -23,7 +23,7 @@
 										<tbody>
 											<tr><td>{{ game.stat        }}</td><td>{{ 'home.suffix.statistics' | translate }}</td></tr>
 											<tr><td>{{ game.achievement }}</td><td>{{ 'home.suffix.awards'     | translate }}</td></tr>
-											<tr><td>{{ game.score       }}</td><td>{{ 'home.suffix.scores'     | translate }}</td></tr>
+											<tr><td>{{ ((game.score * 2) | round ) / 2 }}</td><td>{{ 'home.suffix.scores'     | translate }}</td></tr>
 											<tr><td>{{ game.player      }}</td><td>{{ 'home.suffix.players'    | translate }}</td></tr>
 										</tbody>
 									</table>

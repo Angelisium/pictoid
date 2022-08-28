@@ -39,6 +39,7 @@ queue.process(<T extends JobNames>(job: Queue.Job<{ name: T, args: JobArgs<T> }>
 export async function runJob<T extends JobNames>(jobName: T, ...args: JobArgs<T>): Promise<JobResults<T>> {
 	return new Promise<JobResults<T>>((resolve, reject) => {
 		const job = queue.createJob({ name: jobName, args: args });
+		job.timeout(5 * 60 * 1000) // 5 minutes (if you have many firends :D)
 		job.save();
 		job.on('succeeded', (result: JobResults<T>) => {
 			resolve(result);

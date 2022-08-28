@@ -6,8 +6,8 @@ declare global {
     var collections: {
         games: Collection<models.Game>,
         stats: Collection<models.Stat>,
-        achivements: Collection<models.Achievement>,
-        users: Collection
+        achievements: Collection<models.Achievement>,
+        users: Collection<models.User>,
     }
 }
 
@@ -30,8 +30,8 @@ export async function connectToDatabase() {
     global.collections = {
         games: db.collection("games"),
         stats: db.collection("stats"),
-        achivements: db.collection("achivements"),
-        users: db.collection("achivements"),
+        achievements: db.collection("achievements"),
+        users: db.collection("users"),
     }
     global.mongo = db;
 

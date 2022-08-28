@@ -11,13 +11,16 @@
 						{% if stat.icon %}
 							<img class="icon" src="{{ stat.icon }}" alt="{{ stat.name }}">
 						{% endif %}
+						{% if stat.score %}
+							<span class="score">{{ stat.score }}</span>
+						{% endif %}
 						<h2 class="name">{{ stat.name }}</h2>
 						{% if stat.description %}
 							<p class="description">{{ stat.description }}</p>
 						{% endif %}
 					</div>
 					{% for achievement in stat.achievement %}
-							<div class="achievement">
+							<div class="achievement{% if achievement.userHas %} user-has{% endif %}">
 								<span>x{{ achievement.score }}</span>
 								{% if (achievement.data.type == "icon") %}
 									<span>

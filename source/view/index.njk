@@ -37,6 +37,11 @@
 					<a href="/oauth/login">{{ 'common.login' | translate }}</a>
 				{% endif %}
 			</div>
+			<div class="right">
+				{% if user.isLoading %}
+					<span class="loading"></span>
+				{% endif %}
+			</div>
 		</nav>
 		<main>
 			{% block content %}{% endblock content %}

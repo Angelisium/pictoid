@@ -14,7 +14,9 @@ import path from 'path';
 import { route as HomeController } from './route/Home';
 import { route as GameController } from './route/Game';
 import { route as OauthLoginController } from './route/oauth/Login';
+import { route as OauthLogoutController } from './route/oauth/Logout';
 import { route as OauthCallbackController } from './route/oauth/Callback';
+
 import { connectToDatabase } from './mongo';
 
 declare global {
@@ -81,6 +83,7 @@ async function run() {
 	exprs.get('/:locale', HomeController);
 	exprs.get('/:locale/game/:id', GameController);
 	exprs.use('/oauth/login', OauthLoginController);
+	exprs.use('/oauth/logout', OauthLogoutController);
 	exprs.use('/oauth/callback', OauthCallbackController);
 
 	exprs.use((function (err, req, res, next) {

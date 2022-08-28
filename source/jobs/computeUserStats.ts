@@ -2,16 +2,17 @@ import * as api from "../utils/api";
 import * as models from "../model";
 import { Fields, SiteUser, User } from "../utils/apiTypes";
 
-function computeUser(
+function computeMissingUser(
 	user: User,
 	existingGames: Set<string>,
 	existingStats: Set<string>,
-	existingAchivements: Set<string>,
+	existingachievements: Set<string>,
 	gamesToInsert: models.Game[],
 	statsToInsert: models.Stat[],
-	achivementsToInsert: models.Achievement[],
+	achievementsToInsert: models.Achievement[],
 ): void {
 	for (const userSite of user.sites ?? []) {
+		if (!userSite.site.name) continue; // If site doesn't have name, skip it
 		// Add missing sites 
 		if (!existingGames.has(userSite.site.id.toString())) {
 			gamesToInsert.push({
@@ -52,10 +53,10 @@ function computeUser(
 
 		// Add missing achievements
 		for (const achievement of userSite.achievements ?? []) {
-			if (existingAchivements.has(achievement.id))
+			if (existingachievements.has(achievement.id))
 				continue;
 
-			achivementsToInsert.push({
+			achievementsToInsert.push({
 				_id: achievement.id,
 				data: {
 					type: achievement.data.type,
@@ -74,10 +75,39 @@ function computeUser(
 				gameId: userSite.site.id.toString(),
 				statId: achievement.stat,
 			});
-			existingAchivements.add(achievement.id);
+			existingachievements.add(achievement.id);
 		}
 	}
 }
+
+function computeAchievements(user: User) {
+	const achievements: string[] = [];
+	const stats: { id: string, score: number }[] = [];
+	const games: { id: string, npoints: number }[] = []
+	for (const userSite of user.sites ?? []) {
+		if (!userSite.site.name) continue; // If site doesn't have name, skip it
+
+		for (const stat of userSite.stats ?? []) {
+			const id = `${userSite.site.id}_${stat.id}`
+			stats.push({
+				id: id,
+				score: stat.score,
+			});
+		}
+
+		const game = {
+			id: userSite.site.id.toString(),
+			npoints: 0,
+		}
+		for (const achievement of userSite.achievements ?? []) {
+			achievements.push(achievement.id);
+			game.npoints += achievement.npoints;
+		}
+		games.push(game);
+	}
+	return { stats, achievements, games };
+}
+
 export default async (twinId: number, token: string): Promise<boolean> => {
 	const siteFields: Fields<SiteUser> = {
 		realId: true,
@@ -123,8 +153,11 @@ export default async (twinId: number, token: string): Promise<boolean> => {
 	}
 	const user = await api.getUserInfos(token, twinId, {
 		id: true,
+		name: true,
+		locale: true,
+		picture: true,
 		contacts: {
-			user: { id: true, sites: siteFields }
+			user: { sites: siteFields }
 		},
 		sites: siteFields
 	});
@@ -135,16 +168,22 @@ export default async (twinId: number, token: string): Promise<boolean> => {
 
 	const existingGames: Set<string> = new Set(await collections.games.find({}, { projection: { _id: 1 } }).map(game => game._id).toArray());
 	const existingStats: Set<string> = new Set(await collections.stats.find({}, { projection: { _id: 1 } }).map(stat => stat._id).toArray());
-	const existingAchivements: Set<string> = new Set(await collections.achivements.find({}, { projection: { _id: 1 } }).map(ac => ac._id).toArray());
+	const existingachievements: Set<string> = new Set(await collections.achievements.find({}, { projection: { _id: 1 } }).map(ac => ac._id).toArray());
 
 	const gamesToInsert: models.Game[] = []
 	const statsToInsert: models.Stat[] = []
-	const achivementsToInsert: models.Achievement[] = []
+	const achievementsToInsert: models.Achievement[] = []
 
-	computeUser(user, existingGames, existingStats, existingAchivements, gamesToInsert, statsToInsert, achivementsToInsert);
+	computeMissingUser(user, existingGames, existingStats, existingachievements, gamesToInsert, statsToInsert, achievementsToInsert);
 	for (const contact of user.contacts ?? []) {
-		computeUser(contact.user, existingGames, existingStats, existingAchivements, gamesToInsert, statsToInsert, achivementsToInsert);
+		computeMissingUser(contact.user, existingGames, existingStats, existingachievements, gamesToInsert, statsToInsert, achievementsToInsert);
 	}
+	const userStats: {
+		achievements: Array<string>,
+		stats: Array<{ id: string, score: number }>,
+		games: Array<{ id: string, npoints: number }>,
+	} = computeAchievements(user);
+
 
 	// Perform db operations
 	const promises: Promise<any>[] = []
@@ -157,10 +196,22 @@ export default async (twinId: number, token: string): Promise<boolean> => {
 		console.log(`Inserting ${statsToInsert.length} stats`);
 		await collections.stats.insertMany(statsToInsert);
 	}
-	if (achivementsToInsert.length > 0) {
-		console.log(`Inserting ${achivementsToInsert.length} achievements`);
-		await collections.achivements.insertMany(achivementsToInsert);
+	if (achievementsToInsert.length > 0) {
+		console.log(`Inserting ${achievementsToInsert.length} achievements`);
+		await collections.achievements.insertMany(achievementsToInsert);
 	}
+
+	console.log(`Updating user achievements and stats`);
+	await collections.users.updateOne({ _id: user.id }, {
+		$set: {
+			_id: user.id,
+			name: user.name,
+			picture: user.picture?.url,
+			locale: user.locale,
+			isLoading: false,
+			...userStats,
+		}
+	}, { upsert: true })
 
 	await Promise.all(promises);
 
