@@ -54,6 +54,52 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@messageformat/core@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "@messageformat/core@npm:3.0.1"
+  dependencies:
+    "@messageformat/date-skeleton": ^1.0.0
+    "@messageformat/number-skeleton": ^1.0.0
+    "@messageformat/parser": ^5.0.0
+    "@messageformat/runtime": ^3.0.1
+    make-plural: ^7.0.0
+    safe-identifier: ^0.4.1
+  checksum: f08c982d54ef2ddf32de2a3425746e6efd37ce63154f97ff038edb1e02eb4e3e4c39f2aa42ef3d036e2f1b61eee0a2589e76158b0b91510355ef8348f2f8252f
+  languageName: node
+  linkType: hard
+
+"@messageformat/date-skeleton@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "@messageformat/date-skeleton@npm:1.0.1"
+  checksum: 0832029a18ae54c81d4473eaa764cebbabe084d1a3253a6d4975e5802bff7416a51d43522aad9292eb9663735282a7667e2818efc92905c497ca87424d822ceb
+  languageName: node
+  linkType: hard
+
+"@messageformat/number-skeleton@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "@messageformat/number-skeleton@npm:1.1.0"
+  checksum: 03cf337ef4b95782546e8e2c831f7d2f1310ee9f49635adeef1259c17256c91cb68a59fb97b76a59fddaac284ee739c0a0e0003bcec8d92f6ff156a240a6c23f
+  languageName: node
+  linkType: hard
+
+"@messageformat/parser@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@messageformat/parser@npm:5.0.0"
+  dependencies:
+    moo: ^0.5.1
+  checksum: e595910e8801e17b1e762a1824e4fc97baf6ccc21f5f896d6eae3e537ca2eaed0f699ac20b44d03c38ad20340b57ef0f7c7cf056213d31dd156e65b4d030c8c0
+  languageName: node
+  linkType: hard
+
+"@messageformat/runtime@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@messageformat/runtime@npm:3.0.1"
+  dependencies:
+    make-plural: ^7.0.0
+  checksum: e69c3b0b372e15af88c285f6884ac0e3ba5fc7227b8ddc7f4bef94cb5675057126dc0ae9001e2a623d7ec61727d9b5e69b8e61be8618afe0baf40081ad3b0568
+  languageName: node
+  linkType: hard
+
 "@npmcli/fs@npm:^2.1.0":
   version: 2.1.2
   resolution: "@npmcli/fs@npm:2.1.2"
@@ -166,6 +212,13 @@ __metadata:
     "@types/qs": "*"
     "@types/serve-static": "*"
   checksum: 12a2a0e6c4b993fc0854bec665906788aea0d8ee4392389d7a98a5de1eefdd33c9e1e40a91f3afd274011119c506f7b4126acb97fae62ae20b654974d44cba12
+  languageName: node
+  linkType: hard
+
+"@types/i18n@npm:^0.13.4":
+  version: 0.13.4
+  resolution: "@types/i18n@npm:0.13.4"
+  checksum: b982cd6b6c29ca908374b4ad5d4b2519f05479a5eda63d53f96c5d14c42fa73834cf27afd2d70cdb14aa221a527a10ac9db2651a70c8624fff2f1c4b92d35f2e
   languageName: node
   linkType: hard
 
@@ -414,6 +467,13 @@ __metadata:
     type-is: ~1.6.18
     unpipe: 1.0.0
   checksum: 12fffdeac82fe20dddcab7074215d5156e7d02a69ae90cbe9fee1ca3efa2f28ef52097cbea76685ee0a1509c71d85abd0056a08e612c09077cad6277a644cf88
+  languageName: node
+  linkType: hard
+
+"boolean@npm:^3.1.4":
+  version: 3.2.0
+  resolution: "boolean@npm:3.2.0"
+  checksum: fb29535b8bf710ef45279677a86d14f5185d604557204abd2ca5fa3fb2a5c80e04d695c8dbf13ab269991977a79bb6c04b048220a6b2a3849853faa94f4a7d77
   languageName: node
   linkType: hard
 
@@ -865,6 +925,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-printf@npm:^1.6.9":
+  version: 1.6.9
+  resolution: "fast-printf@npm:1.6.9"
+  dependencies:
+    boolean: ^3.1.4
+  checksum: 53e65b16d22bb0e33ce835f0ef076adbe6d68d89478f84deee50de4e6386bc5e5d5524f1e06cf4392847fc1a8c9144b1145dd9b1d53cfdc233e5164a10f61000
+  languageName: node
+  linkType: hard
+
 "fill-range@npm:^7.0.1":
   version: 7.0.1
   resolution: "fill-range@npm:7.0.1"
@@ -1146,6 +1215,20 @@ __metadata:
   dependencies:
     ms: ^2.0.0
   checksum: 9c7a74a2827f9294c009266c82031030eae811ca87b0da3dceb8d6071b9bde22c9f3daef0469c3c533cc67a97d8a167cd9fc0389350e5f415f61a79b171ded16
+  languageName: node
+  linkType: hard
+
+"i18n@npm:^0.15.0":
+  version: 0.15.0
+  resolution: "i18n@npm:0.15.0"
+  dependencies:
+    "@messageformat/core": ^3.0.0
+    debug: ^4.3.3
+    fast-printf: ^1.6.9
+    make-plural: ^7.0.0
+    math-interval-parser: ^2.0.1
+    mustache: ^4.2.0
+  checksum: 9b9b11440c1748c68bbf6aef09cc18849170a008882eedb79b6577fffe6a9ece51e49ec1db7f698ed3e471320b6db839beb1e433c6fa638b77706d0521f51f2b
   languageName: node
   linkType: hard
 
@@ -1441,6 +1524,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"make-plural@npm:^7.0.0":
+  version: 7.1.0
+  resolution: "make-plural@npm:7.1.0"
+  checksum: d0ef253e508c8cdbddcc37288d25e0944eb2bf800008bf178a1c37b101c3202d89609ddb577a10515bd2499c7665159594704682cc9c159cc20491da6b7ac09e
+  languageName: node
+  linkType: hard
+
+"math-interval-parser@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "math-interval-parser@npm:2.0.1"
+  checksum: aa7111a337106a68a822d63331b9400621637700f96b1a2ae5dcd4abb7571c271d56995b78223023e255259f37065e55a848bdc4c82d023e628e7e415082475f
+  languageName: node
+  linkType: hard
+
 "media-typer@npm:0.3.0":
   version: 0.3.0
   resolution: "media-typer@npm:0.3.0"
@@ -1617,6 +1714,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"moo@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "moo@npm:0.5.1"
+  checksum: 2d8c013f1f9aad8e5c7a9d4a03dbb4eecd91b9fe5e9446fbc7561fd38d4d161c742434acff385722542fe7b360fce9c586da62442379e62e4158ad49c7e1a6b7
+  languageName: node
+  linkType: hard
+
 "ms@npm:2.0.0":
   version: 2.0.0
   resolution: "ms@npm:2.0.0"
@@ -1635,6 +1739,15 @@ __metadata:
   version: 2.1.3
   resolution: "ms@npm:2.1.3"
   checksum: aa92de608021b242401676e35cfa5aa42dd70cbdc082b916da7fb925c542173e36bce97ea3e804923fe92c0ad991434e4a38327e15a1b5b5f945d66df615ae6d
+  languageName: node
+  linkType: hard
+
+"mustache@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "mustache@npm:4.2.0"
+  bin:
+    mustache: bin/mustache
+  checksum: 928fcb63e3aa44a562bfe9b59ba202cccbe40a46da50be6f0dd831b495be1dd7e38ca4657f0ecab2c1a89dc7bccba0885eab7ee7c1b215830da765758c7e0506
   languageName: node
   linkType: hard
 
@@ -1856,6 +1969,7 @@ __metadata:
     "@types/dotenv": ^8.2.0
     "@types/express": ^4.17.13
     "@types/express-session": ^1.17.5
+    "@types/i18n": ^0.13.4
     "@types/mongodb": ^4.0.7
     "@types/node": ^18.7.6
     "@types/nunjucks": ^3.2.1
@@ -1864,6 +1978,7 @@ __metadata:
     dotenv: ^16.0.1
     express: ^4.18.1
     express-session: ^1.17.3
+    i18n: ^0.15.0
     mongodb: ^4.9.0
     nodemon: ^2.0.19
     nunjucks: ^3.2.3
@@ -2043,6 +2158,13 @@ __metadata:
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
   checksum: b99c4b41fdd67a6aaf280fcd05e9ffb0813654894223afb78a31f14a19ad220bba8aba1cb14eddce1fcfb037155fe6de4e861784eb434f7d11ed58d1e70dd491
+  languageName: node
+  linkType: hard
+
+"safe-identifier@npm:^0.4.1":
+  version: 0.4.2
+  resolution: "safe-identifier@npm:0.4.2"
+  checksum: 67e28ed89a74cf20b827419003d3cb60a0ebaec0771c2c818f4b2239bf4f96e01ad90aa8db6dc57ee90c0c438b6f46323e4b5a3d955d18d8c4e158ea035cabdd
   languageName: node
   linkType: hard
 
