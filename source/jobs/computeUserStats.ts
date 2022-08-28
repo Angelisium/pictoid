@@ -1,5 +1,5 @@
-import * as api from "../utils/api"
-import * as models from "../models"
+import * as api from "../utils/api";
+import * as models from "../model";
 import { Fields, SiteUser, User } from "../utils/apiTypes";
 
 function computeUser(
