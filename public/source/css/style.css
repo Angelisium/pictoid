@@ -259,6 +259,11 @@ body>footer {
 	padding: 5px 7px;
 }
 
+footer a {
+	text-decoration: none;
+	color: #3c8dbc;
+}
+
 footer p {
 	margin: 0;
 	padding: 6px 12px;
