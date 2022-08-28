@@ -1,1 +1,31 @@
-{}
+{
+	"keyword": {
+		"and": "und"
+	},
+	"common": {
+		"login": "Verbindung",
+		"logout": "Abmelden",
+		"locales": "Diese Seite ist auch in : ",
+		"credit": {
+			"twinoid": "Twinoid-Anwendung, die von einem Spieler für Spieler entwickelt wurde. Die meisten Bilder sind Eigentum von Motion Twin.",
+			"pictoid": {
+				"sentence": "Hergestellt von %s mit %s von %s.",
+				"adjective": [
+					"den Blick voller Sterne",
+					"ekstatische Ermutigungen"
+				]
+			}
+		}
+	},
+	"home": {
+		"game": "Spiele",
+		"allgame": "Alle Spiele",
+		"nogame": "Es gibt derzeit keine Spiele in dieser Kategorie.",
+		"suffix": {
+			"statistics": "statistiken",
+			"awards": "auszeichnungen",
+			"scores": "punkte",
+			"players": "spieler"
+		}
+	}
+}
