@@ -9,7 +9,7 @@
 		"credit": {
 			"twinoid": "Application Twinoïd conçue par un joueur pour les joueurs. La plupart des images sont la propriété de Motion Twin.",
 			"pictoid": {
-				"sentence": "Développer par %s, sous %s de %s.",
+				"sentence": "Développé par %s, sous %s de %s.",
 				"adjective": [
 					"le regard plein d'étoile",
 					"les encouragements extatiques"
