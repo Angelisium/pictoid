@@ -27,5 +27,8 @@
 			"scores": "points",
 			"players": "joueurs"
 		}
+	},
+	"game": {
+		"nostat": "Il n'y a aucune statistique pour ce jeu, pour l'instant."
 	}
 }
