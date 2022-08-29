@@ -185,17 +185,21 @@ body>footer {
 }
 
 .statistic .information {
-	position: relative;
 	color: #ffffff;
 	text-align: center;
 	margin: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
+/*
 .statistic .icon {
 	position: absolute;
 	top: 4px;
 	left: 4px;
 }
+*/
 
 .statistic .name {
 	font-size: 18px;
@@ -210,12 +214,11 @@ body>footer {
 }
 
 .statistic .score {
-	margin: 0;
-	position: absolute;
-	right: 4px;
-	padding: 2px 5px;
-	border-radius: 30%;
-	background-color: #00c0ef !important;
+	padding: 0 6px;
+	border-radius: 4px;
+	background: rgb(0 192 239);
+	font-size: 11px;
+	line-height: 18px;
 }
 
 .achievement {
@@ -282,8 +285,9 @@ footer li {
 	display: inline-block;
 	width: 52px;
 	height: 52px;
-  }
-  .loading:after {
+}
+
+.loading:after {
 	content: " ";
 	display: block;
 	width: 30px;
@@ -293,12 +297,14 @@ footer li {
 	border: 2px solid #fff;
 	border-color: #fff transparent #fff transparent;
 	animation: loading 1.2s linear infinite;
-  }
-  @keyframes loading {
+}
+
+@keyframes loading {
 	0% {
-	  transform: rotate(0deg);
+		transform: rotate(0deg);
 	}
+
 	100% {
-	  transform: rotate(360deg);
+		transform: rotate(360deg);
 	}
-  }
+}
