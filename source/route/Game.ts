@@ -25,11 +25,26 @@ export async function route(req: Request, res: Response) {
 
 	const gameLocals = {
 		...game,
-		stats: stats.map(stat => ({
-			...stat,
-			score: user?.stats?.find(s => s.id === stat._id)?.score,
-			achievement: achivMap[stat.id],
-		})),
+		stats: stats.map(function (stat) {
+			let s: {
+				achievement: any[],
+				score?: number,
+				icon?: string,
+				name: string,
+				id: string,
+				description: string,
+				rare: number,
+				gameId: string,
+				_id: string
+			} = {
+				...stat,
+				achievement: achivMap[stat.id]
+			};
+			if (user?.stats) {
+				s.score = user.stats.find(s => s.id === stat._id)?.score || 0;
+			}
+			return s;
+		}),
 	}
 
 	return res.render('game.njk', {
