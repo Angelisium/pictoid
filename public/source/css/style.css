@@ -193,13 +193,23 @@ body>footer {
 	align-items: center;
 }
 
-/*
-.statistic .icon {
-	position: absolute;
-	top: 4px;
-	left: 4px;
+.statistic .icon,
+.statistic .score {
+	text-align: left;
+	width: min(13vw, 56px);
 }
-*/
+
+.statistic .icon img {
+	max-width: 100%;
+}
+
+.statistic .score {
+	text-align: right;
+}
+
+.statistic .text {
+	width: min(62vw, 266px);
+}
 
 .statistic .name {
 	font-size: 18px;
@@ -213,7 +223,8 @@ body>footer {
 	margin: 0;
 }
 
-.statistic .score {
+.statistic .score span {
+	display: inline-block;
 	padding: 0 6px;
 	border-radius: 4px;
 	background: rgb(0 192 239);
@@ -221,8 +232,34 @@ body>footer {
 	line-height: 18px;
 }
 
+.statistic.big .icon {
+	width: min(26vw, 92px);
+	text-align: center;
+}
+
+.statistic.big .text {
+	width: min(54vw, 266px);
+}
+
+.statistic.big .name {
+	text-align: left;
+	max-width: min(60vw, 245px);
+}
+
+.statistic.big .description {
+	text-align: justify;
+}
+
+.statistic.big .score {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
 .achievement {
 	background: white;
+	border-left: 3px solid transparent;
+	border-right: 3px solid transparent;
 	display: flex;
 	justify-content: space-between;
 	min-height: 24px;
@@ -236,6 +273,12 @@ body>footer {
 .achievement:last-child {
 	border-bottom-left-radius: 2px;
 	border-bottom-right-radius: 2px;
+}
+
+.achievement.user-has {
+	background: repeating-linear-gradient(125deg, #dfedf5, #dfedf5 10px, #b8d7e8 10px, #b8d7e8 20px);
+	border-left: 3px solid #3c8dbc;
+	border-right: 3px solid #3c8dbc;
 }
 
 .achievement span {
@@ -253,13 +296,6 @@ body>footer {
 	padding: 0 8px;
 	text-align: center;
 	width: min(62vw, 266px);
-}
-
-.achievement.user-has {
-	background: repeating-linear-gradient(130deg, #dfedf5, #dfedf5 10px, #b8d7e8 10px, #b8d7e8 20px);
-	border-left: 3px solid #3C8DBC;
-	border-right: 3px solid #3C8DBC;
-	padding: 5px 7px;
 }
 
 footer a {
