@@ -10,19 +10,21 @@
 						<div class="statistic">
 							<div class="information">
 								{% if stat.icon %}
-									<img class="icon" src="{{ stat.icon }}" alt="{{ stat.name }}">
+									<div class="icon">
+										<img src="{{ stat.icon }}" alt="{{ stat.name }}">
+									</div>
 								{% endif %}
-								<div>
+								<div class="text">
 									<h2 class="name">{{ stat.name }}</h2>
 									{% if stat.description %}
 										<p class="description">{{ stat.description }}</p>
 									{% endif %}
 								</div>
-								{% if (stat.score or stat.score == 0) %}
-									<span class="score">{{ stat.score }}</span>
-								{% else %}
-									<div></div>
-								{% endif %}
+								<div class="score">
+									{% if (stat.score or stat.score == 0) %}
+										<span>{{ stat.score }}</span>
+									{% endif %}
+								</div>
 							</div>
 							{% for achievement in stat.achievement %}
 									<div class="achievement{% if achievement.userHas %} user-has{% endif %}">
