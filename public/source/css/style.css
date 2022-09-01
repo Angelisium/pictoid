@@ -39,6 +39,10 @@ nav.primary a:hover {
 	background: rgba(0, 0, 0, 0.1);
 }
 
+nav.primary a.logo {
+	padding: 10px 15px;
+}
+
 nav.primary a.logo:hover {
 	background: transparent;
 }
