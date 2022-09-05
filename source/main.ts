@@ -29,6 +29,7 @@ declare module "express-session" {
 		twinoidToken?: string;
 		username?: string;
 		avatarUrl?: string;
+		locale?: string;
 	}
 }
 
