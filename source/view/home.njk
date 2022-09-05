@@ -1,43 +1,47 @@
+{% from "./component/cover.njk" import gameCover %}
 {% extends 'index.njk' %}
 
 {% block title %} | {{ 'home.game' | translate }}{% endblock title %}
 
+{% set selected = "all" %}
+{% if user %}
+	{% set selected = locale %}
+{% endif %}
+
+{% set menu = [
+	["all", "home.allgame" | translate],
+	["de", "Deutsch"],
+	["en", "English"],
+	["es", "Español"],
+	["fr", "Français"]
+] %}
+
 {% block content %}
 			<h1>{{ 'home.game' | translate }}</h1>
 			<nav class="secondary">
-				<a data-game="all" class="selected">{{ 'home.allgame' | translate }}</a>
-				<a data-game="de">Deutsch</a>
-				<a data-game="en">English</a>
-				<a data-game="es">Español</a>
-				<a data-game="fr">Français</a>
+				{% for link in menu %}
+					{% if link[0] == selected %}
+						<a data-game="{{ link[0] }}" class="selected">{{ link[1] }}</a>
+					{% else %}
+						<a data-game="{{ link[0] }}">{{ link[1] }}</a>
+					{% endif %}
+				{% endfor %}
 			</nav>
 			{% if (games.length > 0) %}
 				<div class="games">
 					{% for game in games %}
-						<div class="game" data-locale="{{ game.lang if game.lang else "all" }}">
-							<div class="information">
-								<img class="cover" src="/source/img/cover/{{ game.cover }}.png" alt="{{ game.name }}">
-								<div>
-									<h2 class="name">{{ game.name }}</h2>
-									<table>
-										<tbody>
-											<tr><td>{{ game.stat        }}</td><td>{{ 'home.suffix.statistics' | translate }}</td></tr>
-											<tr><td>{{ game.achievement }}</td><td>{{ 'home.suffix.awards'     | translate }}</td></tr>
-											<tr><td>{{ ((game.score * 2) | round ) / 2 }}</td><td>{{ 'home.suffix.scores'     | translate }}</td></tr>
-											<tr><td>{{ game.player      }}</td><td>{{ 'home.suffix.players'    | translate }}</td></tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="progress">
-								{% set percent = game.score / 10 %}
-								<div class="bar" style="width: {{ percent if (percent <= 100) else 100 }}%"></div>
-							</div>
-							<a class="button" href="/{{ locale }}/game/{{ game.id }}">Pictos</a>
-						</div>
+						{% if selected == "all" or (not game.lang) or game.lang == selected %}
+							{{ gameCover(game, locale) }}
+						{% endif %}
 					{% endfor %}
 				</div>
-				<div class="hgames"></div>
+				<div class="hgames">
+					{% for game in games %}
+						{% if selected != "all" and game.lang and game.lang != selected %}
+							{{ gameCover(game, locale) }}
+						{% endif %}
+					{% endfor %}
+				</div>
 			{% else %}
 				<p>{{ 'home.nogame' | translate }}</p>
 			{% endif %}
