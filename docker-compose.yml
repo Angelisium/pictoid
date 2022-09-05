@@ -1,20 +1,41 @@
 version: '3.1'
 
+networks:
+  default:
+    external:
+      name: global_net
+
 services:
   mongo:
     image: mongo
     restart: unless-stopped
-    ports:
-      - "27017:27017"
+    #ports:
+    #  - "27017:27017"
   
-  mongo-exoress:
-    image: mongo-express
-    restart: unless-stopped
-    ports:
-      - "8081:8081"
+#  mongo-exoress:
+#    image: mongo-express
+#    restart: unless-stopped
+#    ports:
+#      - "8081:8081"
 
   redis:
     image: redis
     restart: unless-stopped
-    ports:
-      - "6379:6379"
+    #ports:
+    #  - "6379:6379"
+
+  pictoid:
+    image: node:18
+    container_name: pictoid
+    depends_on:
+      - redis
+      - mongo
+    restart: unless-stopped
+    command: yarn --cwd /app prod
+    volumes:
+      - .:/app/
+    expose:
+      - 8080
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.pictoid.entrypoints=https'
