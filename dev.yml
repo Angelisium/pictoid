@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+  
+#  mongo-exoress:
+#    image: mongo-express
+#    restart: unless-stopped
+#    ports:
+#      - "8081:8081"
+
+  redis:
+    image: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+#  pictoid:
+#    image: node:18
+#    container_name: pictoid
+#    depends_on:
+#      - redis
+#      - mongo
+#    restart: unless-stopped
+#    command: yarn --cwd /app prod
+#    volumes:
+#      - .:/app/
+#    ports:
+#      - 8080:8080
