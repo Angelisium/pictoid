@@ -1,4 +1,4 @@
-import './job';
+import { initQueue } from './job';
 import fs from 'fs';
 import i18n from 'i18n';
 import http from 'http';
@@ -35,6 +35,7 @@ declare module "express-session" {
 
 async function run() {
 	dotenv.config();
+	initQueue();
 
 	const exprs = express();
 	if (!await connectToDatabase())
@@ -71,7 +72,7 @@ async function run() {
 		session({
 			secret: "pioupouet",
 			cookie: {
-				secure: process.env.NODE_ENV !== "development",
+				secure: false,
 				maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
 			},
 			saveUninitialized: true,
