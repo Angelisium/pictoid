@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import * as models from '../model';
 
 export async function route(req: Request, res: Response) {
-	let locale = req.params.locale || "fr";
+	let locale = req.session.locale || req.params.locale || "fr";
 	i18n.setLocale(locale);
 
 	const game = await collections.games.findOne({ _id: req.params.id });
