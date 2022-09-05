@@ -9,11 +9,11 @@
 					{% for stat in game.stats %}
 						<div class="statistic">
 							<div class="information">
-								{% if stat.icon %}
-									<div class="icon">
+								<div class="icon">
+									{% if stat.icon %}
 										<img src="{{ stat.icon }}" alt="{{ stat.name }}">
-									</div>
-								{% endif %}
+									{% endif %}
+								</div>
 								<div class="text">
 									<h2 class="name">{{ stat.name }}</h2>
 									{% if stat.description %}
