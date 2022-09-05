@@ -1,0 +1,26 @@
+{% macro gameCover(game, locale) %}
+	<div class="game" data-locale="{{ game.lang if game.lang else "all" }}">
+		<div class="information">
+			{% if game.lang %}
+				<img class="gameLocale" src="/source/img/flags/{{ game.lang }}.png" alt="{{ game.lang }}">
+			{% endif %}
+			<img class="cover" src="/source/img/cover/{{ game.cover }}.png" alt="{{ game.name }}">
+			<div>
+				<h2 class="name">{{ game.name }}</h2>
+				<table>
+					<tbody>
+						<tr><td>{{ game.stat        }}</td><td>{{ 'home.suffix.statistics' | translate }}</td></tr>
+						<tr><td>{{ game.achievement }}</td><td>{{ 'home.suffix.awards'     | translate }}</td></tr>
+						<tr><td>{{ ((game.score * 2) | round ) / 2 }}</td><td>{{ 'home.suffix.scores'     | translate }}</td></tr>
+						<tr><td>{{ game.player      }}</td><td>{{ 'home.suffix.players'    | translate }}</td></tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="progress">
+			{% set percent = game.score / 10 %}
+			<div class="bar" style="width: {{ percent if (percent <= 100) else 100 }}%"></div>
+		</div>
+		<a class="button" href="/{{ locale }}/game/{{ game.id }}">Pictos</a>
+	</div>
+{% endmacro %}
