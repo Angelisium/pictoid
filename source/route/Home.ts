@@ -2,7 +2,7 @@ import i18n from 'i18n';
 import { Request, Response } from 'express';
 
 export async function route(req: Request, res: Response) {
-	let locale = req.params?.locale || "fr";
+	let locale = req.session.locale || req.params?.locale || "fr";
 	let games = await collections.games.find().toArray();
 	let user = await collections.users.findOne({ _id: req.session.twinoidId }, { projection: { isLoading: 1, games: 1 } });
 
