@@ -20,6 +20,7 @@ export async function route(req: Request, res: Response) {
 		id: true,
 		name: true,
 		picture: true,
+		locale: true
 	});
 	if (user.error)
 		return res.send(user.error);
@@ -28,6 +29,7 @@ export async function route(req: Request, res: Response) {
 	req.session.avatarUrl = user.picture?.url;
 	req.session.username = user.name;
 	req.session.twinoidId = user.id;
+	req.session.locale = user.locale;
 
 	const dbUser = await collections.users.findOne({ _id: user.id }, { projection: { _id: 1, lastUpdated: 1 } });
 
