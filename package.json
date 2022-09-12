@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "nodemon source/main.ts",
 		"build": "tsc",
-		"prod": "ts-node source/main.ts"
+		"prod": "node dist/main.ts"
 	},
 	"author": {
 		"name": "Angelisium",

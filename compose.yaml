@@ -9,12 +9,11 @@ services:
     restart: unless-stopped
 
   pictoid:
-    image: node:18
+    build: .
     container_name: pictoid
     depends_on:
       - redis
     restart: unless-stopped
-    command: yarn --cwd /app prod
     volumes:
       - .:/app/
     labels:
