@@ -1,19 +1,28 @@
-# pictoid
+# <img width="100%" src="./public/source/img/logo2.svg" alt="Pictoid">
  A new version of pictoid ❤
 
-### Minimal requirement
- - npm 8.15.x or yarn 1.22.x
- - node 18.7.x
- - mongodb 6.0.x
-
 ## Quick start
-1. You can use `yarn set version stable` to use yarn@3.2.x
-2. Get dependencies with `yarn` or `yarn install`.
-3. Use `copy .env.example .env` (Windows) or `cp .env.example .env` (Unix) and modify the `.env` file with your own information !
-4. Then, `yarn start` and go to `http://localhost:8080` of `https://localhost:8443` to enjoy !
+Currently, the project is configured to run in a docker container with a traefik proxy (e.g. [adws](https://github.com/Angelisium/adws)).
+But you can start it natively with [Redis:6.0.x+](https://redis.io), [MongoDB](https://mongodb.com) and [Node.js:18.7.x+](https://nodejs.org) (and npm:8.15.x+ but it's included by default in Node.js) :
+ - setup global, mongodb, redis and twinoid configurations in your .env (see .env.example)
+ - run `npm install`
+ - run `npm run start`
+ - go to https://localhost:8080/ (according to your .env configuration)
 
-### TODO :
- - add i18n
- - choose a more appropriate license
- - resolve twino api data insertion
- - polish design
+**Starting sample:**
+ - [lazy with docker](#soon).
+ - [classic with node.js](#soon)
+ - [custom with yarn](#soon)
+ - [technovorous with bun](#soon)
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+[MIT](./LICENSE)
+
+## soon
+ - write examples of native / yarn start, docker start and bun start.
+ - choose a better license ?
+ - fine-tune website details
+ - ???
