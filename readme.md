@@ -1,5 +1,8 @@
 # <img width="100%" src="./public/source/img/logo2.svg" alt="Pictoid">
- A new version of pictoid ❤
+A new version of pictoid ❤
+Pictoid is a [Twinoid](https://twinoid.com) external application to collect and list the list of rewards available on Twinoid's games. This application also provides tools to allow users to better determine the rewards they have left to earn.
+
+`<insert some screenshot here>`
 
 ## Quick start
 Currently, the project is configured to run in a docker container with a traefik proxy (e.g. [adws](https://github.com/Angelisium/adws)).
