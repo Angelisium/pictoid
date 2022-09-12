@@ -12,7 +12,7 @@ But you can start it natively with [Redis:6.0.x+](https://redis.io), [MongoDB](h
  - run `npm run start`
  - go to https://localhost:8080/ (according to your .env configuration)
 
-> **note**   
+> **Note**    
 > If you want to use the lock files for the dependencies installation, you can get them in the `.lock` folder.
 
 **Starting sample:**
