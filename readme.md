@@ -1,12 +1,12 @@
 # <img width="100%" src="./public/source/img/logo2.svg" alt="Pictoid">
 A new version of pictoid ❤
-Pictoid is a [Twinoid](https://twinoid.com) external application to collect and list the list of rewards available on Twinoid's games. This application also provides tools to allow users to better determine the rewards they have left to earn.
+Pictoid is a [Twinoid](https://twinoid.com) external application to collect and list of available rewards on Twinoid's games. This application also provides tools to allow users to better determine the rewards they have left to earn.
 
 `<insert some screenshot here>`
 
 ## Quick start
 Currently, the project is configured to run in a docker container with a traefik proxy (e.g. [adws](https://github.com/Angelisium/adws)).
-But you can start it natively with [Redis:6.0.x+](https://redis.io), [MongoDB](https://mongodb.com) and [Node.js:18.7.x+](https://nodejs.org) (and npm:8.15.x+ but it's included by default in Node.js) :
+But you can start it natively with [Redis:6.0.x+](https://redis.io), [MongoDB](https://mongodb.com) and [Node.js:18.7.x+](https://nodejs.org) (and npm:8.15.x+ if isn't included by default in your Node.js distribution) :
  - setup global, mongodb, redis and twinoid configurations in your .env (see .env.example)
  - run `npm install`
  - run `npm run start`
