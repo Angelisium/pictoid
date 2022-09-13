@@ -1,0 +1,47 @@
+{% from "./component/credit.njk" import credit %}
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Pictoid{% block title %}{% endblock title %}</title>
+		<link rel="stylesheet" href="/source/css/normalize.css">
+		<link rel="stylesheet" href="/source/css/style.css">
+	</head>
+	<body>
+		<nav class="primary">
+			<a class="logo" href="/{{ locale }}">
+				<img src="/source/img/logo.svg" alt="Pictoid">
+			</a>
+			<div class="right">
+				{% if user %}
+					<img src="{{ user.avatar }}" alt="User Image">
+					<span>{{ user.username }}</span>
+				{% else %}
+					<a href="/oauth/login">{{ 'common.login' | translate }}</a>
+				{% endif %}
+			</div>
+			<div class="right">
+				{% if user.isLoading %}
+					<span class="loading"></span>
+				{% endif %}
+			</div>
+		</nav>
+		<main>
+			{% block content %}{% endblock content %}
+		</main>
+		<footer>
+			<p>{{ 'common.credit.twinoid' | translate }}</p>
+			<p>{{ credit() | safe }}</p>
+			<ul>
+				<li>{{ 'common.locales' | translate }}</li>
+				<li><a href="/de"><img src="/source/img/flags/de.png" alt="Deutsch"></a></li>
+				<li><a href="/en"><img src="/source/img/flags/en.png" alt="English"></a></li>
+				<li><a href="/es"><img src="/source/img/flags/es.png" alt="Español"></a></li>
+				<li><a href="/fr"><img src="/source/img/flags/fr.png" alt="Français"></a></li>
+			</ul>
+		</footer>
+		<script src="/source/js/script.js"></script>
+	</body>
+</html>

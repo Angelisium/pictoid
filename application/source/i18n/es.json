@@ -1,0 +1,34 @@
+{
+	"keyword": {
+		"and": "y"
+	},
+	"common": {
+		"login": "Conexión",
+		"logout": "Desconexión",
+		"locales": "Esta página también está disponible en : ",
+		"credit": {
+			"twinoid": "Aplicación de Twinoid diseñada por un jugador para jugadores. La mayoría de las imágenes son propiedad de Motion Twin.",
+			"pictoid": {
+				"sentence": "Creado por %s, con %s de %s.",
+				"adjective": [
+					"el ojos de estrella",
+					"el ánimo extasiado"
+				]
+			}
+		}
+	},
+	"home": {
+		"game": "Juegos",
+		"allgame": "Todos los juegos",
+		"nogame": "Por el momento no hay juegos en esta categoría.",
+		"suffix": {
+			"statistics": "estadísticas",
+			"awards": "premios",
+			"scores": "puntos",
+			"players": "jugadores"
+		}
+	},
+	"game": {
+		"nostat": "Todavía no hay estadísticas para este juego."
+	}
+}

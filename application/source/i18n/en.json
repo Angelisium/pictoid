@@ -1,0 +1,34 @@
+{
+	"keyword": {
+		"and": "and"
+	},
+	"common": {
+		"login": "Login",
+		"logout": "Logout",
+		"locales": "This page is also available in : ",
+		"credit": {
+			"twinoid": "Twinoid application designed by a player for players. Most of the images are the Motion Twin property.",
+			"pictoid": {
+				"sentence": "Made by %s, with %s of %s.",
+				"adjective": [
+					"the benevolent surveillance",
+					"ecstatic encouragement"
+				]
+			}
+		}
+	},
+	"home": {
+		"game": "Games",
+		"allgame": "All games",
+		"nogame": "There are no games in this category yet.",
+		"suffix": {
+			"statistics": "statistics",
+			"awards": "achievements",
+			"scores": "points",
+			"players": "players"
+		}
+	},
+	"game": {
+		"nostat": "There are no statistics for this game yet."
+	}
+}

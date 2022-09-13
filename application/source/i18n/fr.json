@@ -1,0 +1,34 @@
+{
+	"keyword": {
+		"and": "et"
+	},
+	"common": {
+		"login": "Connexion",
+		"logout": "Déconnexion",
+		"locales": "Cette page est également disponible en : ",
+		"credit": {
+			"twinoid": "Application Twinoïd conçue par un joueur pour les joueurs. La plupart des images sont la propriété de Motion Twin.",
+			"pictoid": {
+				"sentence": "Développé par %s, sous %s de %s.",
+				"adjective": [
+					"le regard plein d'étoile",
+					"les encouragements extatiques"
+				]
+			}
+		}
+	},
+	"home": {
+		"game": "Jeux",
+		"allgame": "Tous les jeux",
+		"nogame": "Il n'y a aucun jeu dans cette catégorie pour l'instant.",
+		"suffix": {
+			"statistics": "statistiques",
+			"awards": "récompenses",
+			"scores": "points",
+			"players": "joueurs"
+		}
+	},
+	"game": {
+		"nostat": "Il n'y a aucune statistique pour ce jeu, pour l'instant."
+	}
+}
