@@ -32,3 +32,41 @@ Pull requests are welcome. For major changes, please open an issue first to disc
  - choose a better license ?
  - fine-tune website details
  - ???
+
+# bulk
+
+```py
+################################################################################
+# Miscellaneous                                                                #
+################################################################################
+NODE_ENV="development"
+# NODE_ENV="production"
+
+ENABLE_HTTPS="true"
+HTTP_PORT=8080
+
+# Only used if ENABLE_HTTPS is true :
+HTTPS_PORT=8443
+SSL_KEY="temp/server.key"
+SSL_CRT="temp/server.crt"
+
+################################################################################
+# MongoDB                                                                      #
+################################################################################
+MONGO_URL="mongodb://localhost:27017/"
+MONGO_DBN="pictoid"
+
+################################################################################
+# Redis                                                                        #
+################################################################################
+REDIS_HOST=127.0.0.1
+REDIS_PORT=6379
+
+################################################################################
+# Twinoid                                                                      #
+################################################################################
+APP_URL="http://localhost:8080"
+CLIENT_ID=123
+CLIENT_SECRET="h3r3.4.5m411.3x4mp13.0f.7w1n01d.53cr37"
+QUOTA=500
+```
