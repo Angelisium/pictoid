@@ -1,6 +1,6 @@
 # [<img width="100%" src="./public/source/img/logo2.svg" alt="Pictoid">](https://pictoid.angelisium.fr/)
 A new version of [pictoid](https://pictoid.angelisium.fr/) ❤   
-Pictoid is a [Twinoid](https://twinoid.com) external application to collect and list of available rewards on Twinoid's games. This application also provides tools to allow users to better determine the rewards they have left to earn.
+Pictoid is a [Twinoid](https://twinoid.com) external application to collect and list the available rewards on Twinoid's games. This application also provides tools to allow users to better determine the rewards they have left to earn.
 
 <details>
 	<summary>Screenshot</summary>
