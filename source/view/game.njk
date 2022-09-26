@@ -11,7 +11,7 @@
 							<div class="information">
 								<div class="icon">
 									{% if stat.icon %}
-										<img src="{{ stat.icon }}" alt="{{ stat.name }}">
+										<img src="{{ stat.icon }}" title="{{ stat.name }}" alt="{{ stat.name }}">
 									{% endif %}
 								</div>
 								<div class="text">
@@ -31,7 +31,7 @@
 										<span>x{{ achievement.score }}</span>
 										{% if (achievement.data.type == "icon") %}
 											<span>
-												<img src="{{ achievement.data.url }}" alt="{{ achievement.description }}">
+												<img src="{{ achievement.data.url }}" title="{{ achievement.description }}" alt="{{ achievement.description }}">
 											</span>
 										{% elif (achievement.data.type == "title") %}
 											<span>{{ achievement.data.title }}</span>
