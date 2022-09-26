@@ -2,9 +2,9 @@
 	<div class="game" data-locale="{{ game.lang if game.lang else "all" }}">
 		<div class="information">
 			{% if game.lang %}
-				<img class="gameLocale" src="/source/img/flags/{{ game.lang }}.png" alt="{{ game.lang }}">
+				<img class="gameLocale" src="/source/img/flags/{{ game.lang }}.png" title="{{ game.lang }}" alt="{{ game.lang }}">
 			{% endif %}
-			<img class="cover" src="/source/img/cover/{{ game.cover }}.png" alt="{{ game.name }}">
+			<img class="cover" src="/source/img/cover/{{ game.cover }}.png" title="{{ game.name }}" alt="{{ game.name }}">
 			<div>
 				<h2 class="name">{{ game.name }}</h2>
 				<table>
